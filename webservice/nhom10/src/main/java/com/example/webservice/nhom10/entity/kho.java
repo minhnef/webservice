@@ -10,44 +10,39 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class nhanvien {
+public class kho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idnhanvien;
+    private int idkho;
     @Column
-    private String hoten;
+    private String tennguyenlieu;
     @Column
-    private LocalDate ngaysinh;
+    private int gia;
     @Column
-    private String diachi;
-    @jakarta.validation.constraints.Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Số điện thoại không hợp lệ")
+    private String noinhap;
     @Column
-    private String sdt;    
+    private LocalDate ngaynhap;
     @Column
-    private String lichlamviec;
+    private int soluong;
     @Column
-    private float luong;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idtk", referencedColumnName = "idtk")
-    private taikhoan taikhoannv;
+    private String donvido;
+    @Column
+    private int tongtien;
 
-    @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<dondathang> dondathangs;
+    @OneToMany(mappedBy = "kho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<chitietmonan> chitietmonans;
+
 
 }
