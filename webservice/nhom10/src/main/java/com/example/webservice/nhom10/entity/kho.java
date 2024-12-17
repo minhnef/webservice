@@ -10,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ public class kho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idkho;
+    private int id;
     @Column
     private String tennguyenlieu;
     @Column
@@ -44,5 +46,8 @@ public class kho {
     @OneToMany(mappedBy = "kho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<chitietmonan> chitietmonans;
 
+    @ManyToOne
+    @JoinColumn(name = "idquanly")
+    private quanly idquanly;
 
 }
