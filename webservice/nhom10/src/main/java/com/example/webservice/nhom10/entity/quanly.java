@@ -49,6 +49,9 @@ public class quanly {
 
     @OneToMany(mappedBy = "idquanly", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<monan> monans;
+
+    @OneToMany(mappedBy = "idquanly", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<kho> khos;
     
 
 
