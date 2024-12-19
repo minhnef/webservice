@@ -7,8 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +23,9 @@ public class taikhoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int idtk;
-    @Column(unique = true)
+    @Column
     private String taikhoan;
     @Column
-    @Pattern(regexp = "")
     private String matkhau;
     @Column
     private String quyenhan;
@@ -35,14 +34,12 @@ public class taikhoan {
     @Column
     private boolean trangthai;
 
-    @OneToOne(mappedBy = "taikhoanqly", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "taikhoan_ql", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
     private quanly quanly;
 
-    @OneToOne(mappedBy = "taikhoannv", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "taikhoan_nv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
     private nhanvien nhanvien;
-
-    @OneToOne(mappedBy = "taikhoankh", cascade = CascadeType.ALL)
-    private khachhang khachhang;
-    
 
 }
