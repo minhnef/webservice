@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('images/bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            width: 100%;
+            text-align: left;
+            color: white;
+        }
+
+        .register-container {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #606770;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .input-group input,
+        .input-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .gender-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .gender-group div {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #606770;
+            background: white;
+            width: 100%;
+            border-radius: 5px;
+
+        }
+
+        .gender-group input {
+            margin-right: 5px;
+            margin-top: 12px;
+        }
+
+        button {
+            background-color: #f59001;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .login-link {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .login-link a {
+            color: #ff7f00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .select-gender {
+            max-width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h1>Tạo tài khoản mới</h1>
+
+
+        <form action="register.php" method="POST">
+
+            <div class="input-group">
+                <input type="text" placeholder="Họ" name="first_name" required>
+                <input type="text" placeholder="Tên" name="surname" required>
+            </div>
+
+            <label for="dob">Ngày sinh</label>
+            <div class="input-group">
+                <select name="day" required>
+                    <option value="">Ngày</option>
+
+                    <script>
+                        for (let i = 1; i <= 31; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+                <select name="month" required>
+                    <option value="">Tháng</option>
+                    <option value="Jan">1</option>
+                    <option value="Feb">2</option>
+                    <option value="Mar">3</option>
+                    <option value="Apr">4</option>
+                    <option value="May">5</option>
+                    <option value="Jun">6</option>
+                    <option value="Jul">7</option>
+                    <option value="Aug">8</option>
+                    <option value="Sep">9</option>
+                    <option value="Oct">10</option>
+                    <option value="Nov">11</option>
+                    <option value="Dec">12</option>
+                </select>
+                <select name="year" required>
+                    <option value="">Năm</option>
+                    <script>
+                        for (let i = 2024; i >= 1900; i--) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+
+            <label for="gender">Giới tính</label>
+            <div class="gender-group">
+                <div><input class="select-gender" type="radio" name="gender" value="Female" required>
+                    <div> Nữ giới</div>
+                </div>
+                <div><input class="select-gender" type="radio" name="gender" value="Male" required>
+                    <div>Nam giới</div>
+                </div>
+                <div><input class="select-gender" type="radio" name="gender" value="Custom" required>
+                    <div>Tùy chọn</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Sdt hoặc địa chỉ email" name="contact" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Mật khẩu mới" name="password" required>
+            </div>
+
+            <button type="submit">Đăng ký</button>
+        </form>
+
+        <p class="login-link">Bạn đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+    </div>
+</body>
+
+</html>
