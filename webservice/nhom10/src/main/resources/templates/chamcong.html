@@ -1,3 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>QR chấm công</title>
+    <link rel="stylesheet" href="../static/css/chamcong.css">
+</head>
+
+<body>
+    <div id="chamcong">
+        <form action="http://localhost:8082/generateQRCode" method="get">
+            <input type="text" name="text" placeholder="Nhập mã nhân viên">
+            <button type="submit">Chấm công</button>
+        </form>
+        <img id="qrcode" src="" alt="QR code">
+    </div>
+</body>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const imageUrl = form.action + '?' + new URLSearchParams(new FormData(form)).toString();
+        document.getElementById('qrcode').src = imageUrl; // Cập nhật thuộc tính src của img
+
+        const employeeId = document.getElementById('employeeId').value;
+        if (employeeId.trim() === '') {
+            alert("Vui lòng nhập mã nhân viên.");
+            return;
+        }
+
+    });
+</script>
+
+</html>
 <!-- <!DOCTYPE html>
 <html>
 <head>
@@ -12,98 +48,68 @@
 </body>
 </html> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/chamcong.css">
     <title>Điểm Danh Nhân Viên</title>
 </head>
-<body>
 
-    <h1>Điểm Danh Nhân Viên</h1>
-
-    <label for="employeeId">Nhập ID Nhân viên:</label>
-    <input type="number" id="employeeId" placeholder="ID Nhân viên" />
-
-    <button onclick="chamCong()">Điểm Danh</button>
-
-    <div id="result"></div>
-
-    <script>
-        // Hàm gọi API để điểm danh nhân viên
-        function chamCong() {
-            // Lấy ID nhân viên từ trường input
-            var employeeId = document.getElementById("employeeId").value;
-            var resultDiv = document.getElementById("result");
-
-            // Kiểm tra nếu ID không được nhập
-            if (!employeeId) {
-                resultDiv.textContent = "Vui lòng nhập ID nhân viên.";
-                return;
-            }
-
-            // Gửi yêu cầu GET đến API Spring Boot
-            fetch(`http://localhost:8082/apinhanvien/chamcong?id=${employeeId}`)
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();  // Chuyển phản hồi thành JSON
-                    } else {
-                        throw new Error('Không thể điểm danh nhân viên');
-                    }
-                })
-                .then(data => {
-                    // Hiển thị kết quả trả về từ API
-                    resultDiv.innerHTML = `
-                        <p><strong>Kết quả:</strong> ${data}</p>
-                    `;
-                })
-                .catch(error => {
-                    // Hiển thị thông báo lỗi nếu có
-                    resultDiv.textContent = "Đã xảy ra lỗi khi điểm danh: " + error.message;
-                });
-        }
-    </script>
-
-</body>
-</html>
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>QR chấm công</title>
-    <link rel="stylesheet" href="../static/css/chamcong.css">
-</head>
 <body>
     <div id="chamcong">
-        <form action="http://localhost:8082/generateQRCode" method="get">
-            <input type="text" name="text" placeholder="Nhập mã nhân viên">
-            <button type="submit">Chấm công</button>
-        </form>
-        <img id="qrcode" src="" alt="QR code">
-    </div>
-</body>
-    <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const imageUrl = form.action + '?' + new URLSearchParams(new FormData(form)).toString();
-            document.getElementById('qrcode').src = imageUrl; // Cập nhật thuộc tính src của img
+        <h1>Điểm Danh Nhân Viên</h1>
 
-            const employeeId = document.getElementById('employeeId').value;
-            if (employeeId.trim() === '') {
-                alert("Vui lòng nhập mã nhân viên.");
-                return;
+        <label for="employeeId">Nhập ID Nhân viên:</label>
+        <input type="number" id="employeeId" placeholder="ID Nhân viên" />
+
+        <button onclick="chamCong()">Điểm Danh</button>
+
+        <div id="result"></div>
+
+        
+        <script>
+            function chamCong() {
+              // Lấy ID nhân viên từ trường input
+              var employeeId = document.getElementById("employeeId").value;
+              var resultDiv = document.getElementById("result");
+            
+              // Kiểm tra nếu ID không được nhập
+              if (!employeeId) {
+                  resultDiv.textContent = "Vui lòng nhập ID nhân viên.";
+                  return;
+              }
+            
+              // Gửi yêu cầu GET đến API Spring Boot
+              fetch(`http://localhost:8082/apinhanvien/chamcong?id=${employeeId}`)
+                  .then(response => {
+                      if (response.ok) {
+                          return response.json();  // Chuyển phản hồi thành JSON
+                      } else {
+                          throw new Error('Không thể điểm danh nhân viên');
+                      }
+                  })
+                  .then(data => {
+                      // Hiển thị kết quả trả về từ API
+                      resultDiv.innerHTML = `
+                          <p><strong>Kết quả:</strong> ${data}</p>
+                      `;
+                  })
+                  .catch(error => {
+                      // Hiển thị thông báo lỗi nếu có
+                      resultDiv.textContent = "Đã xảy ra lỗi khi điểm danh: " + error.message;
+                  });
             }
+            </script>
+    </div>
 
-        });
-    </script>
+
+</body>
+
 </html> -->
+
 
 
 
