@@ -70,7 +70,7 @@ public class qrcodeser implements iqrcodeser{
     public ResponseEntity<byte[]> generatedQRCode(int text) throws WriterException, IOException, ChecksumException, FormatException{
         Optional<nhanvien> optional = nhanvienrepo.findById(text);
         if(optional.isPresent()){
-            nhanvien nhanvien1 = optional.get();
+            
 
             LocalDateTime time = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yy"); 
