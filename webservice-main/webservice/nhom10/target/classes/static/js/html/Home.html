@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/home-admin.css">
+</head>
+<body>
+    <!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
+    </div>
+    <div class="title"><img class="logo-main" src="../img/jjj.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
+    </div>
+</div>
+<!-- app home -->
+<div class="app-container" style="display: flex;">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-item active">
+            <i class="fas fa-tachometer-alt navbar-icon"></i>
+            <span class="navbar-text">Home</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-box-open navbar-icon"></i>
+            <span class="navbar-text">Kho Nhiên Liệu</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-utensils navbar-icon"></i>
+            <span class="navbar-text">Menus</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-users navbar-icon "></i>
+            <span class="navbar-text">Doanh Thu</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-user-check navbar-icon "></i>
+            <span class="navbar-text">Duyệt Nghỉ Phép</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+            <span class="navbar-text">Danh Sách Đặt Bàn</span>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Header Section -->
+        <div class="header">
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../img/userss.png" alt="Employees">
+                </div>
+                <h3 id="employee-count">0</h3>
+                <p>Tổng số nhân viên</p>
+            </div>
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../img/hoadon.jpg" alt="Invoices">
+                </div>
+                <h3 id="total-orders">0</h3>
+                <p>Tổng số hóa đơn</p>
+            </div>
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../img/food-icon-design-vector-png_120564.jpg" alt="Dishes">
+                </div>
+                <h3 id="dish-count">0</h3>
+                <p>Tổng số món ăn</p>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <div style="display: flex; flex-direction: column; width: 65%;">
+                <div class="left">
+                    <h3>Doanh thu</h3>
+                    <div class="revenue-row">
+                        <span>Doanh thu tháng này:</span>
+                        <strong id="total-revenue">0 VND</strong>
+                    </div>
+                </div>
+                <div class="restaurant-image">
+                    <img src="../img/back.png" alt="Nhà hàng" style="object-fit: cover; height: 250px;">
+                </div>
+            </div>
+            <div class="right">
+                <h3>Món ăn bán chạy</h3>
+                <canvas id="topDishesChart" class="chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Chart.js Library -->
+<!--    <script src="../js/apilogin.js"></script>-->
+    <!-- CDN for Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CDN for chartjs-plugin-datalabels -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <script type="module" src="../js/header.js"></script>
+<!--    <script type="module" src="../js/tongnhanvienmaini.js"></script>-->
+<!--    <script type="module" src="../js/tongmonan.js"></script>-->
+<!--    <script type="module" src="../js/doanhthuvahoadon.js"></script>-->
+    <script type="module" src="../js/home.js"></script>
+
+<!--    <script>-->
+<!--        // Gọi login() nếu chưa có token trong localStorage-->
+<!--        window.onload = async () => {-->
+<!--            const token = localStorage.getItem('authToken');-->
+<!--            if (!token) {-->
+<!--                try {-->
+<!--                    await login(); // Gọi hàm đăng nhập để lấy token-->
+<!--                    fetchEmployeeCount(); // Sau khi login, lấy số nhân viên-->
+<!--                } catch (error) {-->
+<!--                    console.error(error);-->
+<!--                    document.getElementById('employee-count').textContent = 'Lỗi đăng nhập';-->
+<!--                }-->
+<!--            } else {-->
+<!--                fetchEmployeeCount(); // Nếu đã có token, lấy số nhân viên-->
+<!--            }-->
+<!--        };-->
+<!--    </script>-->
+<!--<script>-->
+<!--    // Function to fetch data from backend-->
+<!--    async function fetchTopDishes() {-->
+<!--        try {-->
+<!--            const response = await fetch('http://localhost:5000/api/top-dishes'); // Thay URL bằng endpoint backend của bạn-->
+<!--            if (!response.ok) throw new Error('Failed to fetch data');-->
+<!--            const data = await response.json();-->
+<!--            return data;-->
+<!--        } catch (error) {-->
+<!--            console.error(error);-->
+<!--            // Trả về dữ liệu mặc định khi lỗi-->
+<!--            return {-->
+<!--                labels: ['Món A', 'Món B', 'Món C', 'Món D', 'Món E'],-->
+<!--                datasets: [{-->
+<!--                    label: 'Top 5 Món Bán Chạy',-->
+<!--                    data: [30, 25, 20, 15, 10],-->
+<!--                    backgroundColor: [-->
+<!--                        '#FF6384',-->
+<!--                        '#36A2EB',-->
+<!--                        '#FFCE56',-->
+<!--                        '#4BC0C0',-->
+<!--                        '#9966FF'-->
+<!--                    ]-->
+<!--                }]-->
+<!--            };-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Hàm render biểu đồ-->
+<!--    async function renderTopDishesChart() {-->
+<!--        const ctx = document.getElementById('topDishesChart').getContext('2d');-->
+<!--        const chartData = await fetchTopDishes();-->
+<!--        new Chart(ctx, {-->
+<!--            type: 'pie',-->
+<!--            data: chartData,-->
+<!--            options: {-->
+<!--                responsive: true,-->
+<!--                plugins: {-->
+<!--                    legend: {-->
+<!--                        position: 'bottom',-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    // Gọi hàm render khi trang tải-->
+<!--    renderTopDishesChart();-->
+
+<!--</script>-->
+</body>
+</html>

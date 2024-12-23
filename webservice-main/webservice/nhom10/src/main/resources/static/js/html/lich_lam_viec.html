@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Làm Việc Nhân Viên</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../css/lichlamviec.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+        <!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
+    </div>
+    <div class="title"><img class="logo-main" src="../img/jjj.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
+    </div>
+</div>
+    <div style="display: flex;">
+<!-- navbar -->
+<div class="navbar">
+    <div class="navbar-item active">
+        <i class="fas fa-tachometer-alt navbar-icon"></i>
+        <span class="navbar-text">Home</span>
+    </div>
+    <div class="navbar-item">
+        <i class="fas fa-box-open navbar-icon"></i>
+        <span class="navbar-text">Kho Nhiên Liệu</span>
+    </div>
+    <div class="navbar-item">
+        <i class="fas fa-utensils navbar-icon"></i>
+        <span class="navbar-text">Menus</span>
+    </div>
+    <div class="navbar-item">
+        <i class="fas fa-users navbar-icon"></i>
+        <span class="navbar-text">Doanh Thu</span>
+    </div>
+    <div class="navbar-item">
+        <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+        <span class="navbar-text">Danh Sách Đặt Bàn</span>
+    </div>
+</div>
+        <div class="container">
+            <h1>Lịch Làm Việc Nhân Viên</h1>
+            
+            <!-- Nút thêm lịch -->
+            <button class="btn btn-add" onclick="openModal('add')">Thêm Lịch</button>
+
+            <!-- Bảng lịch làm việc -->
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Nhân Viên</th>
+                        <th>Ca Làm</th>
+                        <th>Ngày</th>
+                        <th>Chức Vụ</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Sáng</td>
+                        <td>17/12/2024</td>
+                        <td>Phục Vụ</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
+                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Sáng</td>
+                        <td>17/12/2024</td>
+                        <td>Phục Vụ</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
+                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Sáng</td>
+                        <td>17/12/2024</td>
+                        <td>Phục Vụ</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
+                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Sáng</td>
+                        <td>17/12/2024</td>
+                        <td>Phục Vụ</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
+                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>Sáng</td>
+                        <td>17/12/2024</td>
+                        <td>Phục Vụ</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
+                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-header">Tiêu Đề</div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Nội dung modal -->
+                </div>
+                <div class="modal-footer" style="display: flex;">
+                    <button class="btn close-btn" onclick="closeModal()">Hủy</button>
+                    <button class="btn save-btn" style="display: none;" id="save-btn">Lưu</button>
+                    <button class="btn delete-btn" style="display: none;" id="delete-btn">Xóa</button>
+                </div>
+            </div>
+        </div>
+            </div>
+            
+            <script src="../js/header.js"></script>
+
+            <script>
+                const modal = document.getElementById('modal');
+                const modalHeader = document.getElementById('modal-header');
+                const modalBody = document.getElementById('modal-body');
+                const saveBtn = document.getElementById('save-btn');
+                const deleteBtn = document.getElementById('delete-btn');
+                const scheduleTableBody = document.querySelector('.schedule-table tbody');
+            
+                // Dữ liệu giả lập nếu chưa có backend trả về
+                const mockData = [
+                    { id: 1, name: 'Nguyễn Văn A', shift: 'Sáng', date: '17/12/2024', role: 'Phục Vụ' },
+                    { id: 2, name: 'Trần Văn B', shift: 'Chiều', date: '18/12/2024', role: 'Đầu Bếp' },
+                    { id: 3, name: 'Lê Thị C', shift: 'Tối', date: '19/12/2024', role: 'Quản Lý' },
+                ];
+            
+                // Hàm lấy dữ liệu từ backend
+                async function fetchScheduleData() {
+                    try {
+                        const response = await fetch('https://your-backend-url/api/schedules');
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch data');
+                        }
+                        const data = await response.json();
+                        renderScheduleTable(data);
+                    } catch (error) {
+                        console.error('Error fetching schedule data:', error);
+                        // Sử dụng dữ liệu giả lập nếu có lỗi
+                        renderScheduleTable(mockData);
+                    }
+                }
+            
+                // Hàm render dữ liệu vào bảng
+                function renderScheduleTable(data) {
+                    scheduleTableBody.innerHTML = ''; // Xóa dữ liệu cũ
+                    data.forEach((item, index) => {
+                        const row = `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.name}</td>
+                                <td>${item.shift}</td>
+                                <td>${item.date}</td>
+                                <td>${item.role}</td>
+                                <td>
+                                    <button class="btn btn-edit" onclick="openModal('edit', ${item.id})">Chỉnh Sửa</button>
+                                    <button class="btn btn-delete" onclick="openModal('delete', ${item.id})">Xóa</button>
+                                </td>
+                            </tr>
+                        `;
+                        scheduleTableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                }
+            
+                // Hàm mở modal
+                function openModal(type, id = null) {
+                    modal.style.display = 'flex';
+                    modalBody.innerHTML = ''; // Reset nội dung trước khi mở
+                    saveBtn.style.display = 'block';
+                    deleteBtn.style.display = 'none';
+            
+                    if (type === 'add') {
+                        modalHeader.textContent = 'Thêm Lịch Làm Việc';
+                        modalBody.innerHTML = `
+                            <input type="text" placeholder="Tên nhân viên" />
+                            <select>
+                                <option value="Sáng">Sáng</option>
+                                <option value="Chiều">Chiều</option>
+                                <option value="Tối">Tối</option>
+                            </select>
+                            <input type="date" />
+                            <input type="text" placeholder="Chức vụ" />
+                        `;
+                    } else if (type === 'edit') {
+                        modalHeader.textContent = 'Chỉnh Sửa Lịch Làm Việc';
+                        // Giả lập dữ liệu chỉnh sửa cho nhân viên
+                        const employee = mockData.find(item => item.id === id) || {};
+                        modalBody.innerHTML = `
+                            <input type="text" placeholder="Tên nhân viên" value="${employee.name || ''}" />
+                            <select>
+                                <option value="Sáng" ${employee.shift === 'Sáng' ? 'selected' : ''}>Sáng</option>
+                                <option value="Chiều" ${employee.shift === 'Chiều' ? 'selected' : ''}>Chiều</option>
+                                <option value="Tối" ${employee.shift === 'Tối' ? 'selected' : ''}>Tối</option>
+                            </select>
+                            <input type="date" value="${employee.date || ''}" />
+                            <input type="text" placeholder="Chức vụ" value="${employee.role || ''}" />
+                        `;
+                    } else if (type === 'delete') {
+                        modalHeader.textContent = 'Xóa Lịch Làm Việc';
+                        modalBody.innerHTML = `<p>Bạn có chắc muốn xóa lịch làm việc này?</p>`;
+                        saveBtn.style.display = 'none';
+                        deleteBtn.style.display = 'block';
+                    }
+                }
+            
+                // Hàm đóng modal
+                function closeModal() {
+                    modal.style.display = 'none';
+                }
+            
+                // Gọi hàm lấy dữ liệu khi trang được tải
+                document.addEventListener('DOMContentLoaded', fetchScheduleData);
+            </script>
+            
+    
+</body>
+</html>
