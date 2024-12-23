@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+  <meta charset="UTF-8">
+  <title>Them </title>
+  <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+  <h1>New User</h1>
+  <div class="col-md-auto">
+    <form th:object="${nguyenlieu}" th:action="@{save}" action="#" method="post">
+      <div>
+        <input type="text" th:field="*{id}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>
+      <div>
+        <input type="text" th:field="*{tennguyenlieu}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>
+      <div>
+        <input type="text" th:field="*{donvido}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>
+      <div>
+        <input type="text" th:field="*{gia}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>    <div>
+      <input type="text" th:field="*{noinhap}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+    </div>
+      <div>
+        <input type="text" th:field="*{ngaynhap}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>    <div>
+      <input type="text" th:field="*{soluong}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+    </div>
+      <div>
+        <input type="text" th:field="*{tongtien}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      </div>
+
+
+
+      <div style="clear: both; display: block; height: 10px"></div>
+      <input type="submit" class="btn btn-success" value="Save"/>
+    </form>
+  </div>
+</div>
+</body>
+</html>
