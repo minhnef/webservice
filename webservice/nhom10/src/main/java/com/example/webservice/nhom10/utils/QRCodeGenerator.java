@@ -1,8 +1,6 @@
 package com.example.webservice.nhom10.utils;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
