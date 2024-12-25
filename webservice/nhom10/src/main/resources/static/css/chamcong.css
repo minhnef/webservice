@@ -1,11 +1,66 @@
-html{
-    background-color: bisque;
+html {
+    background-color: #f5f5dc; /* Màu nền nhẹ nhàng */
 }
-#chamcong{
+
+body {
+    font-family: 'Arial', sans-serif; /* Phông chữ hiện đại */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Chiều cao toàn bộ màn hình */
+}
+
+#chamcong {
     text-align: center;
     margin: 50px auto;
-    border: 4px solid grey;
+    border: 4px solid #ccc; /* Đường viền nhẹ */
+    border-radius: 10px; /* Góc bo tròn */
     width: 40%;
-    height: fit-content;
-    font-size: 32px;
-}       
+    padding: 20px; /* Thêm khoảng cách bên trong */
+    background-color: #ffffff; /* Màu nền trắng */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+}
+
+h1 {
+    color: #333; /* Màu chữ tối */
+}
+
+label {
+    font-size: 1.2em; /* Kích thước chữ lớn hơn */
+    margin-top: 10px;
+}
+
+input {
+    border-radius: 5px;
+    font-size: 1em; /* Kích thước chữ đồng nhất */
+    padding: 10px; /* Thêm khoảng cách bên trong */
+    width: 80%; /* Chiều rộng 80% */
+    max-width: 300px; /* Chiều rộng tối đa */
+    border: 1px solid #ccc; /* Đường viền nhẹ */
+    margin: 10px 0; /* Khoảng cách trên và dưới */
+}
+
+button {
+    width: 200px;
+    height: 40px; /* Chiều cao nút lớn hơn */
+    margin: 20px auto;
+    background-color: #4CAF50; /* Màu nền nút */
+    border: none; /* Không có đường viền */
+    border-radius: 5px; /* Góc bo tròn */
+    color: white; /* Màu chữ trắng */
+    font-size: 1em; /* Kích thước chữ nút */
+    cursor: pointer; /* Con trỏ khi di chuột */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+button:hover {
+    background-color: #45a049; /* Màu nền khi di chuột */
+}
+
+#result {
+    margin-top: 20px; /* Khoảng cách trên kết quả */
+    font-size: 1.1em; /* Kích thước chữ kết quả */
+    color: #d9534f; /* Màu chữ đỏ cho thông báo lỗi */
+}

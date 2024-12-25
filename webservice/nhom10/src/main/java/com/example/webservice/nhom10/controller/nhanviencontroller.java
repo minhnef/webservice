@@ -16,11 +16,11 @@ public class nhanviencontroller {
     nhanvienser nhanvienser;
 
     @GetMapping("/chamcong")
-    public ResponseEntity<?> chamCong(@RequestParam int id) {
+    public String chamCong(@RequestParam int id) {
         try {   
-            return ResponseEntity.ok(nhanvienser.chamcCongNhanVien(id));
+            return nhanvienser.chamcCongNhanVien(id);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+            return "Error: " + e.getMessage();
         }
     }
 

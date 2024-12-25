@@ -52,4 +52,10 @@ public class nhanvien {
     @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<dondathang> dondathangs;
 
+    @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<lichlamviec> lichlamviecs;
+
+    @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<thuong> thuongs;
+
 }
