@@ -1,18 +1,31 @@
 function chamcong() {
-    var idnhanvien = document.getElementById('idnv').value.trim();
-    var url = `http://localhost:8082/apinhanvien/chamcong?id=${idnhanvien}`; // Sử dụng backtick
-    fetch(url)
-        .then(response => {
-            if (response.ok) {
-                return response.json(); // Thêm dấu ngoặc để gọi hàm
-            } else {
-                throw new Error('Lỗi kết nối mạng');
-            }
-        })
-        .then(data => {
-            alert('Xác nhận: ' + JSON.stringify(data));
-        })
-        .catch(error => {
-            alert('Đã xảy ra lỗi: ' + error);
-        });
+    let idnhanvien = document.getElementById('idnv').value;
+
+    if(idnhanvien===''){
+        alert("Vui lòng nhập ID nhân viên!")
+        return
+    }
+    let url = `http://localhost:8082/apinhanvien/chamcong?id=${idnhanvien}`;
+
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text(); // Chuyển đổi phản hồi thành text
+        } else {
+            throw new Error('Lỗi kết nối mạng');
+        }
+    })
+    .then(data => {
+        alert(data)
+        // document.getElementById('content').innerText = data; // Hiển thị kết quả lên giao diện
+    })
+    .catch(error => {
+        alert('Đã xảy ra lỗi: ' + error);
+    });
 }
+

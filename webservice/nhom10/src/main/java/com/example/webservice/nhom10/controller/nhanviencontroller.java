@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webservice.nhom10.service.nhanvienser;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,12 +17,8 @@ public class nhanviencontroller {
     nhanvienser nhanvienser;
 
     @GetMapping("/chamcong")
-    public String chamCong(@RequestParam int id) {
-        try {   
-            return nhanvienser.chamcCongNhanVien(id);
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
+    public ResponseEntity<?> chamCong(@RequestParam int id) {
+       return ResponseEntity.ok(nhanvienser.chamcCongNhanVien(id));
     }
 
 }

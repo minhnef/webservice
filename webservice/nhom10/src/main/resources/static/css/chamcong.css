@@ -59,7 +59,7 @@ button:hover {
     background-color: #45a049; /* Màu nền khi di chuột */
 }
 
-#result {
+#content {
     margin-top: 20px; /* Khoảng cách trên kết quả */
     font-size: 1.1em; /* Kích thước chữ kết quả */
     color: #d9534f; /* Màu chữ đỏ cho thông báo lỗi */

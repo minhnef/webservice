@@ -1,80 +1,19 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/chamcong.css">
-    <title>Điểm Danh Nhân Viên</title>
+    <title>Điểm danh nhân viên</title>
+    <link href="../static/css/chamcong.css" rel="stylesheet">
 </head>
-
 <body>
     <div id="chamcong">
-        <h1>Điểm Danh Nhân Viên</h1>
-
-        <label for="employeeId">Nhập ID Nhân viên:</label>
-        <input type="number" id="employeeId" placeholder="ID Nhân viên" />
-
-        <button type="submit" id="submitBtn" onclick="chamCong()">Chấm Công</button>
-
-        <div id="result"></div>
+        <h1>CHẤM CÔNG CHO NHÂN VIÊN</h1>
+        <label>Nhập ID nhân viên</label>
+        <input type="text" id="idnv" placeholder="ID nhân viên">
+        <button id="chamCongBtn" onclick="chamcong()">Chấm công</button>
+        <div id="content"></div>
     </div>
-
-    <script>
-        // function chamCong() {
-        //     var employeeId = document.getElementById("employeeId").value.trim();
-        //     var resultDiv = document.getElementById("result");
-
-        //     if (!employeeId) {
-        //         resultDiv.textContent = "Vui lòng nhập ID nhân viên.";
-        //         return;
-        //     }
-
-        //     fetch(`http://localhost:8082/apinhanvien/chamcong?id=${employeeId}`)
-        //         .then(response => {
-        //             if (response.ok) {
-        //                 return response.json();
-        //             } else {
-        //                 throw new Error('Không thể điểm danh nhân viên');
-        //             }
-        //         })
-        //         .then(data => {
-        //             resultDiv.innerHTML = `<p><strong>Kết quả:</strong> ${data}</p>`;
-        //         })
-        //         .catch(error => {
-        //             resultDiv.textContent = "Đã xảy ra lỗi khi điểm danh: " + error.message;
-        //         });
-        // }
-        function chamCong() {
-            var employeeId = document.getElementById("employeeId").value.trim();
-            var resultDiv = document.getElementById("result");
-
-            if (!employeeId) {
-                resultDiv.textContent = "Vui lòng nhập ID nhân viên.";
-                return;
-            }
-
-            console.log(`Gửi yêu cầu đến API với ID: ${employeeId}`);
-
-            fetch(`http://localhost:8082/apinhanvien/chamcong?id=${employeeId}`)
-                .then(response => {
-                    console.log(`Mã phản hồi: ${response.status}`); // Log mã phản hồi
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Không thể điểm danh nhân viên');
-                    }
-                })
-                .then(data => {
-                    resultDiv.innerHTML = `<p><strong>Kết quả:</strong> ${data}</p>`;
-                })
-                .catch(error => {
-                    console.error('Lỗi:', error); // Log lỗi
-                    resultDiv.textContent = "Đã xảy ra lỗi khi điểm danh: " + error.message;
-                });
-        }
-
-    </script>
+    <script src="../static/js/chamcong.js"></script>
 </body>
-
 </html>

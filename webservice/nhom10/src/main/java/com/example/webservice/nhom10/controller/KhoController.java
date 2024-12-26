@@ -1,7 +1,7 @@
 package com.example.webservice.nhom10.controller;
 
 import com.example.webservice.nhom10.entity.kho;
-import com.example.webservice.nhom10.repository.khorepo;
+import com.example.webservice.nhom10.repository.KhoRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/kho")
 public class KhoController {
     @Autowired
-    khorepo khoRepo;
+    KhoRepo khoRepo;
     @RequestMapping
     public String index(Model model) {
         model.addAttribute("nguyenlieu",khoRepo.findAll());
