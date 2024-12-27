@@ -23,7 +23,7 @@ public class chitietkhuyenmai {
     @Column
     private int idchitiet;
     @Column
-    private String dieukien;
+    private int dieukien;
     @Column
     private String giamgia;
     

@@ -39,6 +39,8 @@ public class khachhang {
     @Column
     private int diemtichluy;
     
+    @OneToMany(mappedBy = "khachhang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<dondathang> dondathangs;
   
 
     @OneToMany(mappedBy = "khachhang", cascade = CascadeType.ALL,fetch = FetchType.LAZY)

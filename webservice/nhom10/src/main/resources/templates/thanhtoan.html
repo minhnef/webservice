@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện Thanh toán</title>
+    <link rel="stylesheet" href="../static/css/thanhtoan.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>THANH TOÁN</h1>
+
+        <label for="iddh">ID đơn hàng:</label>
+        <input type="text" id="id" name="id" placeholder="Nhập ID đơn hàng cần thanh toán." required>
+
+        <label for="tientra">Tiền trả:</label>
+        <input type="text" id="tientra" name="tientra" placeholder="VD: 100000" required>
+        <label for="voucher">Áp dụng mã khuyến mãi:</label>
+        <input type="text" name="voucher" id="voucher" placeholder="Nhập mã voucher tại đây.">
+
+        <button onclick="apvoucher()">Sử dụng mã Voucher giảm giá</button><br><br>
+        <button type="submit" onclick="thanhtoan()">Thanh toán</button>
+
+        <script src="../static/js/thanhtoan.js"></script>
+    </div>
+</body>
+
+</html>

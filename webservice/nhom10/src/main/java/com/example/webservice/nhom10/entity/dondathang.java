@@ -42,5 +42,12 @@ public class dondathang {
     @OneToMany(mappedBy = "iddonhang", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<chitietdonhang> chitietdonhangs;
 
+    @ManyToOne
+    @JoinColumn(name = "idkh")
+    private khachhang khachhang;
+
+    @OneToMany(mappedBy = "dondathang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<khuyenmai> khuyenmais;
+
 
 }
