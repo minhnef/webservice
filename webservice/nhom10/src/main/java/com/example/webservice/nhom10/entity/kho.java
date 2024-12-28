@@ -1,6 +1,7 @@
 package com.example.webservice.nhom10.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -18,38 +19,40 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class kho {
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private int id;
-    @Getter
-    @Column
+
+    @Column(name = "tennguyenlieu")
     private String tennguyenlieu;
-    @Getter
-    @Column
+
+    @Column(name = "gia")
     private int gia;
-    @Getter
-    @Column
+
+    @Column(name = "noinhap")
     private String noinhap;
-    @Getter
-    @Column
+
+    @Column(name = "ngaynhap")
+
     private LocalDate ngaynhap;
-    @Getter
-    @Column
+
+    @Column(name = "soluong")
     private int soluong;
-    @Getter
-    @Column
+
+    @Column(name = "donvido")
     private String donvido;
-    @Getter
-    @Column
+
+    @Column(name = "tongtien")
     private int tongtien;
 
     @OneToMany(mappedBy = "kho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -59,67 +62,84 @@ public class kho {
     @JoinColumn(name = "idquanly")
     private quanly idquanly;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTennguyenlieu(String tennguyenlieu) {
-        this.tennguyenlieu = tennguyenlieu;
-    }
-
-    public void setGia(int gia) {
-        this.gia = gia;
-    }
-
-    public void setNoinhap(String noinhap) {
-        this.noinhap = noinhap;
-    }
-
-    public void setNgaynhap(LocalDate ngaynhap) {
-        this.ngaynhap = ngaynhap;
-    }
-
-    public void setSoluong(int soluong) {
-        this.soluong = soluong;
-    }
-
-    public void setDonvido(String donvido) {
-        this.donvido = donvido;
-    }
-
-    public void setTongtien(int tongtien) {
-        this.tongtien = tongtien;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTennguyenlieu() {
         return tennguyenlieu;
     }
 
+    public void setTennguyenlieu(String tennguyenlieu) {
+        this.tennguyenlieu = tennguyenlieu;
+    }
+
     public int getGia() {
         return gia;
+    }
+
+    public void setGia(int gia) {
+        this.gia = gia;
     }
 
     public String getNoinhap() {
         return noinhap;
     }
 
+    public void setNoinhap(String noinhap) {
+        this.noinhap = noinhap;
+    }
+
     public LocalDate getNgaynhap() {
-        return ngaynhap;
+
+      return ngaynhap;
+    }
+
+    public void setNgaynhap(LocalDate ngaynhap) {
+        this.ngaynhap = ngaynhap;
     }
 
     public int getSoluong() {
         return soluong;
     }
 
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+    }
+
     public String getDonvido() {
         return donvido;
     }
 
+    public void setDonvido(String donvido) {
+        this.donvido = donvido;
+    }
+
     public int getTongtien() {
         return tongtien;
+    }
+
+    public void setTongtien(int tongtien) {
+        this.tongtien = tongtien;
+    }
+
+    public List<chitietmonan> getChitietmonans() {
+        return chitietmonans;
+    }
+
+    public void setChitietmonans(List<chitietmonan> chitietmonans) {
+        this.chitietmonans = chitietmonans;
+    }
+
+    public quanly getIdquanly() {
+        return idquanly;
+    }
+
+    public void setIdquanly(quanly idquanly) {
+        this.idquanly = idquanly;
     }
 }

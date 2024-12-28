@@ -1,45 +1,58 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Them </title>
-  <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm Nguyên Liệu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
 </head>
-<body>
-<div class="col-3"></div>
-<div class="container col-6">
-  <h1>New User</h1>
-  <div class="col-md-auto">
-    <form th:object="${nguyenlieu}" th:action="@{save}" action="#" method="post">
-      <div>
-        <input type="text" th:field="*{id}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+<body class="bg-gray-100">
+<div class="container mx-auto p-4">
+  <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">Thêm Nguyên Liệu Mới</h1>
+    <form th:object="${nguyenlieu}" th:action="@{/kho/save}" method="post">
+      <input type="hidden" th:field="*{id}" />
+      <div class="mb-4">
+        <label for="tennguyenlieu" class="block text-gray-700">Tên Nguyên Liệu:</label>
+        <input type="text" th:field="*{tennguyenlieu}" id="tennguyenlieu" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Tên Nguyên Liệu"/>
       </div>
-      <div>
-        <input type="text" th:field="*{tennguyenlieu}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      <div class="mb-4">
+        <label for="donvido" class="block text-gray-700">Đơn Vị Đo:</label>
+        <input type="text" th:field="*{donvido}" id="donvido" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Đơn Vị Đo"/>
       </div>
-      <div>
-        <input type="text" th:field="*{donvido}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      <div class="mb-4">
+        <label for="gia" class="block text-gray-700">Giá:</label>
+        <input type="text" th:field="*{gia}" name="gia" id="gia" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Giá" inputmode="numeric" />
       </div>
-      <div>
-        <input type="text" th:field="*{gia}" class="form-control" placeholder="Ten Nguyen Lieu"/>
-      </div>    <div>
-      <input type="text" th:field="*{noinhap}" class="form-control" placeholder="Ten Nguyen Lieu"/>
-    </div>
-      <div>
-        <input type="text" th:field="*{ngaynhap}" class="form-control" placeholder="Ten Nguyen Lieu"/>
-      </div>    <div>
-      <input type="text" th:field="*{soluong}" class="form-control" placeholder="Ten Nguyen Lieu"/>
-    </div>
-      <div>
-        <input type="text" th:field="*{tongtien}" class="form-control" placeholder="Ten Nguyen Lieu"/>
+      <div class="mb-4">
+        <label for="noinhap" class="block text-gray-700">Nơi Nhập:</label>
+        <input type="text" th:field="*{noinhap}" id="noinhap" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Nơi Nhập"/>
       </div>
-
-
-
-      <div style="clear: both; display: block; height: 10px"></div>
-      <input type="submit" class="btn btn-success" value="Save"/>
+      <div class="mb-4">
+        <label for="ngaynhap" class="block text-gray-700">Ngày Nhập:</label>
+        <input type="date" th:field="*{ngaynhap}" id="ngaynhap" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Ngày Nhập"/>
+      </div>
+      <div class="mb-4">
+        <label for="soluong" class="block text-gray-700">Số Lượng:</label>
+        <input type="number" th:field="*{soluong}" name="soluong" id="soluong" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Số Lượng"/>
+      </div>
+      <div class="mb-4">
+        <label for="tongtien" class="block text-gray-700">Tổng Tiền:</label>
+        <input type="text" th:field="*{tongtien}" name="tongtien" id="tongtien" class="form-control w-full px-3 py-2 border rounded-lg" placeholder="Tổng Tiền" readonly />
+      </div>
+      <div class="flex justify-between items-center">
+        <a href="/kho" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Back</a>
+        <input type="submit" class="btn btn-success bg-green-500 text-white px-4 py-2 rounded-lg" value="Save"/>
+      </div>
     </form>
   </div>
 </div>
+<script src="js/addnguyenlieu.js" th:src="@{/js/addnguyenlieu.js}"></script>
 </body>
 </html>
