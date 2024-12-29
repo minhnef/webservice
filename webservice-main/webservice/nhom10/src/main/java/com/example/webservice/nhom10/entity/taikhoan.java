@@ -38,8 +38,8 @@ public class taikhoan {
     @PrimaryKeyJoinColumn
     private quanly quanly;
 
-    @OneToOne(mappedBy = "taikhoan_nv", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "taikhoannv", cascade = CascadeType.ALL, orphanRemoval = true)
     @PrimaryKeyJoinColumn
-    private nhanvien nhanvien;
+    private com.example.webservice.nhom10.entity.nhanvien nhanvien;
 
 }

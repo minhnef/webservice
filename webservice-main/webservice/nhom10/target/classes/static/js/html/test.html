@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý lịch làm việc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            padding: 8px 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn.add {
+            background-color: #28a745;
+        }
+        .btn.edit {
+            background-color: #ffc107;
+        }
+        .btn.delete {
+            background-color: #dc3545;
+        }
+        .form-container {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Quản lý lịch làm việc</h1>
+
+    <!-- Bảng hiển thị lịch làm việc -->
+    <table>
+        <thead>
+        <tr>
+            <th>ID Lịch</th>
+            <th>Ngày Bắt Đầu</th>
+            <th>Ngày Kết Thúc</th>
+            <th>ID Nhân Viên</th>
+            <th>Thao Tác</th>
+        </tr>
+        </thead>
+        <tbody id="scheduleTable">
+        <!-- Dữ liệu sẽ được thêm bởi JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- Form thêm/sửa lịch làm việc -->
+    <div class="form-container">
+        <h2 id="formTitle">Thêm Lịch Làm Việc</h2>
+        <form id="scheduleForm">
+            <div class="form-group">
+                <label for="ngaybatdau">Ngày Bắt Đầu:</label>
+                <input type="date" id="ngaybatdau" name="ngaybatdau" required>
+            </div>
+            <div class="form-group">
+                <label for="ngayketthuc">Ngày Kết Thúc:</label>
+                <input type="date" id="ngayketthuc" name="ngayketthuc" required>
+            </div>
+            <div class="form-group">
+                <label for="idnhanvien">ID Nhân Viên:</label>
+                <input type="number" id="idnhanvien" name="idnhanvien" required>
+            </div>
+            <button type="submit" class="btn add">Thêm</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Mẫu dữ liệu ban đầu
+    let schedules = [
+        { id: 1, ngaybatdau: '2024-01-01', ngayketthuc: '2024-01-07', idnhanvien: 1 },
+        { id: 2, ngaybatdau: '2024-01-08', ngayketthuc: '2024-01-14', idnhanvien: 2 },
+        { id: 3, ngaybatdau: '2024-01-15', ngayketthuc: '2024-01-21', idnhanvien: 3 }
+    ];
+
+    const scheduleTable = document.getElementById('scheduleTable');
+    const scheduleForm = document.getElementById('scheduleForm');
+    const formTitle = document.getElementById('formTitle');
+    let isEditing = false;
+    let editId = null;
+
+    // Hàm render bảng
+    function renderTable() {
+        scheduleTable.innerHTML = '';
+        schedules.forEach(schedule => {
+            scheduleTable.innerHTML += `
+                    <tr>
+                        <td>${schedule.id}</td>
+                        <td>${schedule.ngaybatdau}</td>
+                        <td>${schedule.ngayketthuc}</td>
+                        <td>${schedule.idnhanvien}</td>
+                        <td>
+                            <button class="btn edit" onclick="editSchedule(${schedule.id})">Sửa</button>
+                            <button class="btn delete" onclick="deleteSchedule(${schedule.id})">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+        });
+    }
+
+    // Hàm thêm lịch làm việc
+    scheduleForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const ngaybatdau = document.getElementById('ngaybatdau').value;
+        const ngayketthuc = document.getElementById('ngayketthuc').value;
+        const idnhanvien = document.getElementById('idnhanvien').value;
+
+        if (isEditing) {
+            // Cập nhật lịch làm việc
+            schedules = schedules.map(schedule =>
+                schedule.id === editId
+                    ? { ...schedule, ngaybatdau, ngayketthuc, idnhanvien: parseInt(idnhanvien) }
+                    : schedule
+            );
+            isEditing = false;
+            editId = null;
+            formTitle.textContent = 'Thêm Lịch Làm Việc';
+        } else {
+            // Thêm mới lịch làm việc
+            const newSchedule = {
+                id: schedules.length + 1,
+                ngaybatdau,
+                ngayketthuc,
+                idnhanvien: parseInt(idnhanvien)
+            };
+            schedules.push(newSchedule);
+        }
+
+        scheduleForm.reset();
+        renderTable();
+    });
+
+    // Hàm sửa lịch làm việc
+    function editSchedule(id) {
+        const schedule = schedules.find(schedule => schedule.id === id);
+
+        document.getElementById('ngaybatdau').value = schedule.ngaybatdau;
+        document.getElementById('ngayketthuc').value = schedule.ngayketthuc;
+        document.getElementById('idnhanvien').value = schedule.idnhanvien;
+
+        isEditing = true;
+        editId = id;
+        formTitle.textContent = 'Sửa Lịch Làm Việc';
+    }
+
+    // Hàm xóa lịch làm việc
+    function deleteSchedule(id) {
+        schedules = schedules.filter(schedule => schedule.id !== id);
+        renderTable();
+    }
+
+    // Khởi tạo bảng
+    renderTable();
+</script>
+</body>
+</html>
