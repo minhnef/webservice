@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.selected {
+    background-color: #d1e7dd;
+}
+
+#datBanBtn {
+    background-color: #57a86b;
+    /* Màu xanh lá cây */
+    font-size: 20px;
+    color: white;
+    float: inline-end;
+    
+
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    width: 200px;
+    /* Tăng chiều rộng */
+    height: 50px;
+    /* Tăng chiều cao */
+}
+
+#datBanBtn:hover {
+    background-color: #3e8e41;
+    box-shadow: 0 12px 10px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

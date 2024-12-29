@@ -5,6 +5,8 @@ package com.example.webservice.nhom10.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,9 +50,11 @@ public class quanly {
     private taikhoan taikhoanqly;
 
     @OneToMany(mappedBy = "idquanly", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "ma_ql")
     private List<monan> monans;
 
     @OneToMany(mappedBy = "idquanly", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "kho_ql")
     private List<kho> khos;
     
 

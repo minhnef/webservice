@@ -1,7 +1,10 @@
 package com.example.webservice.nhom10.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,11 +31,13 @@ public class chitietmonan {
     private String danhgia;
     
     @ManyToOne
-    @JoinColumn(name = "idmonan")
+    @JsonBackReference(value = "ma_ctma")
+    @JoinColumn(name = "idmonan", foreignKey = @ForeignKey(name = "fk_ma_ctma"))
     private monan idmonan;
 
     @ManyToOne
-    @JoinColumn(name = "idkho")
+    @JsonBackReference(value = "kho_ctma")
+    @JoinColumn(name = "idkho",foreignKey = @ForeignKey(name = "fk_ctma_kho"))
     private kho kho;
 
 

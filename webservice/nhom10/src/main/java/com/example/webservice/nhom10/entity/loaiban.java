@@ -2,6 +2,8 @@ package com.example.webservice.nhom10.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +35,7 @@ public class loaiban {
     private int gia;
 
     @OneToMany(mappedBy = "loaiban", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "ban_loaiban")
     private List<ban> bans;
 
 

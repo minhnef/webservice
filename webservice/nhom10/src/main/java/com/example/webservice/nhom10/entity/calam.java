@@ -1,7 +1,10 @@
 package com.example.webservice.nhom10.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +31,8 @@ public class calam {
     private String calam;
 
     @ManyToOne
-    @JoinColumn(name = "idlichlamviec")
+    @JsonBackReference(value = "nv_cl")
+    @JoinColumn(name = "idlichlamviec", foreignKey = @ForeignKey(name = "fk_lv_cl"))
     private lichlamviec lichlamviec;
 
 

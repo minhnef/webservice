@@ -3,10 +3,14 @@ package com.example.webservice.nhom10.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,14 +40,17 @@ public class khuyenmai {
     private LocalDate ngayketthuc;
 
     @ManyToOne
-    @JoinColumn(name = "idkh")
+    @JsonBackReference(value = "kh_km")
+    @JoinColumn(name = "idkh", foreignKey = @ForeignKey(name = "fk_kh_km"))
     private khachhang khachhang;
     
     @ManyToOne
-    @JoinColumn(name = "iddh")
+    @JsonBackReference(value = "ddh_km")
+    @JoinColumn(name = "iddh", foreignKey = @ForeignKey(name = "fk_ddh_km"))
     private dondathang dondathang;
 
     @OneToMany(mappedBy = "khuyenmai", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "km_ctkm")
     private List<chitietkhuyenmai> chitietkhuyenmais;
 
 

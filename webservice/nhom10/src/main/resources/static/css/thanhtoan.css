@@ -1,67 +1,42 @@
-/* body {
-    margin: auto;
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-width: 400px;
-}
-h2 {
-    text-align: center;
-}
-label {
-    display: block;
-    margin: 10px 0 5px;
-}
-input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #45a049;
-} */
 body {
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    height: 100vh; /* Chiều cao 100% của viewport */
-    margin: 0; /* Bỏ margin mặc định */
-    background-color: #f4f4f4; /* Màu nền nhẹ nhàng */
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    height: 100vh;
+    /* Chiều cao 100% của viewport */
+    margin: 0;
+    /* Bỏ margin mặc định */
+    background-color: #f4f4f4;
+    /* Màu nền nhẹ nhàng */
 }
 
 #container {
-    background-color: #cef4c5; /* Màu nền cho khung */
-    padding: 20px ;
+    background-color: #cef4c5;
+    /* Màu nền cho khung */
+    padding: 20px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho khung */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng cho khung */
     max-width: 400px;
-    width: 100%; /* Đảm bảo khung không vượt quá chiều rộng của viewport */
+    width: 100%;
+    /* Đảm bảo khung không vượt quá chiều rộng của viewport */
 }
 
 h1 {
     text-align: center;
-    color: #272525; /* Màu chữ cho tiêu đề */
-    
+    color: #272525;
+    /* Màu chữ cho tiêu đề */
+
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
-    color: #555; /* Màu chữ cho label */
+    color: #555;
+    /* Màu chữ cho label */
 }
 
 input[type="text"] {
@@ -70,7 +45,8 @@ input[type="text"] {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Đổ bóng cho ô input */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng cho ô input */
 }
 
 button {
@@ -81,9 +57,24 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px; /* Kích thước chữ cho nút */
+    font-size: 16px;
+    /* Kích thước chữ cho nút */
 }
 
 button:hover {
-    background-color: #2e6831; /* Màu khi hover */
+    background-color: #2e6831;
+    /* Màu khi hover */
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: -5%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    
 }

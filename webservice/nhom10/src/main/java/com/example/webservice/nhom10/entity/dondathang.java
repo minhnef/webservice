@@ -2,10 +2,14 @@ package com.example.webservice.nhom10.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,20 +37,21 @@ public class dondathang {
     private int tonggia;
 
     @ManyToOne
-    @JoinColumn(name = "idnhanvien")
+    @JsonBackReference(value = "ddh_nv")
+    @JoinColumn(name = "idnhanvien", foreignKey = @ForeignKey(name = "fk_nv_ddh"))
     private nhanvien nhanvien;
 
-    @OneToMany(mappedBy = "dondathang", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
-    private List<ban> bans;
-
-    @OneToMany(mappedBy = "iddonhang", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "donhang", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "ddh_ctdh")
     private List<chitietdonhang> chitietdonhangs;
 
     @ManyToOne
-    @JoinColumn(name = "idkh")
+    @JsonBackReference(value = "kh_ddh")
+    @JoinColumn(name = "idkh", foreignKey = @ForeignKey(name = "kh_ddh"))
     private khachhang khachhang;
 
     @OneToMany(mappedBy = "dondathang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "ddh_km")
     private List<khuyenmai> khuyenmais;
 
 

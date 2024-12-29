@@ -2,6 +2,8 @@ package com.example.webservice.nhom10.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +33,7 @@ public class danhmucmonan {
     private String mota;
 
     @OneToMany(mappedBy = "danhmuc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "dm_ma")
     private List<monan> monans;
 
 }

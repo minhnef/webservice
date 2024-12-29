@@ -3,6 +3,8 @@ package com.example.webservice.nhom10.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,10 +42,12 @@ public class khachhang {
     private int diemtichluy;
     
     @OneToMany(mappedBy = "khachhang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "kh_ddh")
     private List<dondathang> dondathangs;
   
 
     @OneToMany(mappedBy = "khachhang", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "kh_km")
     private List<khuyenmai> khuyenmais;
     
 

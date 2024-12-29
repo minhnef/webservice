@@ -3,6 +3,8 @@ package com.example.webservice.nhom10.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,12 +52,15 @@ public class nhanvien {
     private taikhoan taikhoannv;
 
     @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "ddh_nv")
     private List<dondathang> dondathangs;
 
     @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "nv_llv")
     private List<lichlamviec> lichlamviecs;
 
     @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "thuong_nv")
     private List<thuong> thuongs;
 
 }
