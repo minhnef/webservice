@@ -16,7 +16,7 @@
         <span>Time: </span>
         <div class="time" id="currentTime">--:--</div>
     </div>
-    <div class="title"><img class="logo-main" src="../img/jjj.jpg" alt=""></div>
+    <div class="title"><img class="logo-main" src="../img/Logo2.jpg" alt=""></div>
     <div class="admin-section" style="width: 300px; justify-content: end;">
         <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
         <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
@@ -27,22 +27,25 @@
 <div class="app-container" style="display: flex;">
     <!-- navbar -->
     <div class="navbar">
-        <div class="navbar-item active">
-            <i class="fas fa-tachometer-alt navbar-icon"></i>
-            <span class="navbar-text">Home</span>
+        <div class="navbar-item ">
+            <i class="fa-solid fa-house navbar-icon"></i>
+            <span class="navbar-text">Trang chủ</span>
         </div>
+        <script>
+            // Lưu thông tin trang "home-nhanvien.html" vào localStorage
+            localStorage.setItem('fromHome', 'nhanvien');
+          </script>
+          
         <div class="navbar-item">
-            <i class="fas fa-box-open navbar-icon"></i>
+            <i class="fa-solid fa-warehouse navbar-icon"></i>
             <span class="navbar-text">Kho Nhiên Liệu</span>
         </div>
         <div class="navbar-item">
-            <i class="fas fa-utensils navbar-icon"></i>
-            <span class="navbar-text">Menus</span>
-        </div>
-        <div class="navbar-item">
-            <i class="fas fa-users navbar-icon"></i>
-            <span class="navbar-text">Doanh Thu</span>
-        </div>
+            <a href="doanhthu.html" class="navbar-link">
+                <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                <span class="navbar-text">Doanh Thu</span>
+            </a>
+        </div>        
         <div class="navbar-item">
             <i class="fa-solid fa-clipboard-list navbar-icon"></i>
             <span class="navbar-text">Danh Sách Đặt Bàn</span>

@@ -46,7 +46,7 @@ body {
 }
 
 .header-bar .logout-btn {
-    background-color: #dc3545;
+    background-color: #333;
     color: white;
     border: none;
     border-radius: 5px;
