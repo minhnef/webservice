@@ -102,7 +102,9 @@ h1 {
 .modal-footer button {
     margin: 5px;
 }
-
+.modal-footer{
+    justify-content: center;
+}
 .close-btn {
     background-color: #f44336;
 }

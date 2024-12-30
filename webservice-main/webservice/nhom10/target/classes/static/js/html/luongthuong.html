@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary and Rewards</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/header.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fff4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table, th, td {
+            border: 1px solid #e0e0e0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f1f8e9;
+        }
+        tr:hover {
+            background-color: #dcedc8;
+        }
+        .button-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 1000;
+            border-radius: 10px;
+            width: 350px;
+        }
+        .modal h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .modal input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .modal button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+
+        }
+        .modal button:first-of-type {
+            background-color: red;
+            color: white;
+        }
+        .modal button:first-of-type:hover {
+            background-color: #45a049;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Màu nền cho thông báo thành công */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            font-size: 16px;
+            z-index: 9999;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .notification.error {
+            background-color: #f44336; /* Màu nền cho thông báo lỗi */
+        }
+.edit{
+    background: #4CAF50;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+        table, th, td {
+            border: 1px solid #e0e0e0;
+            text-align: center; /* Căn giữa nội dung trong bảng */
+        }
+        .container{
+            display : flex;
+        }.main{
+                     width: 100%;
+                     padding: 20px;
+                 }
+    </style>
+</head>
+<body>
+<!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
+    </div>
+    <div class="title"><img class="logo-main" src="../img/jjj.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
+    </div>
+</div>
+<div class="container">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-item active">
+            <i class="fas fa-tachometer-alt navbar-icon"></i>
+            <span class="navbar-text">Home</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-box-open navbar-icon"></i>
+            <span class="navbar-text">Kho Nhiên Liệu</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-utensils navbar-icon"></i>
+            <span class="navbar-text">Menus</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fas fa-users navbar-icon "></i>
+            <span class="navbar-text">Doanh Thu</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-user-check navbar-icon "></i>
+            <span class="navbar-text">Duyệt Nghỉ Phép</span>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+            <span class="navbar-text">Danh Sách Đặt Bàn</span>
+        </div>
+    </div>
+    <div class="main">
+        <h1>Employee Salary and Rewards</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Mã Nhân Viên</th>
+                <th>Tên Nhân Viên</th>
+                <th>Lương</th>
+                <th>Thưởng</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="employeeTable">
+            <!-- Dynamic rows will appear here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+<!-- Modal for Edit -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header" id="modal-header">Chỉnh Sửa Nhân Viên</div>
+        <div class="modal-body" id="modal-body">
+            <!-- Nội dung modal -->
+        </div>
+        <div class="modal-footer" style="display: flex;">
+            <button class="btn close-btn" onclick="closeModal()">Hủy</button>
+            <button class="btn save-btn" style="display: none;" id="save-btn">Lưu</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let employees = [];
+    let rewards = [];
+    let currentEmployeeId = null;
+
+    function fetchEmployees() {
+        fetch('http://localhost:8083/nhanvien/all')
+            .then(response => response.json())
+            .then(data => {
+                employees = data;
+                fetchRewards(); // Sau khi lấy nhân viên, gọi lấy thưởng
+            })
+            .catch(error => console.error('Error fetching employee data:', error));
+    }
+
+    function fetchRewards() {
+        fetch('http://localhost:8083/thuong')  // API thưởng
+            .then(response => response.json())
+            .then(data => {
+                rewards = data;
+                // Duyệt qua thưởng và gán cho nhân viên
+                employees.forEach(employee => {
+                    const reward = rewards.find(r => r.idnhanvien === employee.idnhanvien);
+                    if (reward) {
+                        employee.reward = `${reward.thuong} (${reward.lydo})`; // Thêm thông tin thưởng vào nhân viên
+                    }
+                });
+                renderTable(); // Render lại bảng với thông tin thưởng
+            })
+            .catch(error => console.error('Error fetching reward data:', error));
+    }
+
+    function renderTable() {
+        const table = document.getElementById('employeeTable');
+        table.innerHTML = '';  // Xóa nội dung cũ
+
+        employees.forEach((employee) => {
+            table.innerHTML += `
+        <tr>
+            <td>${employee.idnhanvien}</td>
+            <td>${employee.hoten}</td>
+            <td>${employee.luong || ''}</td>
+            <td>${employee.reward || ''}</td>
+            <td>
+                <button class="edit" onclick="openModal('edit', ${employee.idnhanvien})">Chỉnh Sửa</button>
+            </td>
+        </tr>
+    `;
+        });
+    }
+
+    function openModal(action, id) {
+        currentEmployeeId = id;
+        const employee = employees.find(emp => emp.idnhanvien === id);
+
+        if (action === 'edit') {
+            document.getElementById('modal-header').innerText = 'Chỉnh Sửa Nhân Viên';
+            document.getElementById('modal-body').innerHTML = `
+            <input type="text" id="editName" value="${employee.hoten}" placeholder="Tên Nhân Viên" disabled> <!-- Tên không thể chỉnh sửa -->
+            <input type="number" id="editSalary" value="${employee.luong}" placeholder="Lương">
+            <input type="number" id="editRewardAmount" value="${employee.reward.split(' ')[0] || ''}" placeholder="Tiền Thưởng">
+            <input type="text" id="editRewardReason" value="${employee.reward.split('(')[1]?.split(')')[0] || ''}" placeholder="Lý Do Thưởng">
+        `;
+            document.getElementById('save-btn').style.display = 'block';
+            document.getElementById('save-btn').onclick = saveChanges;
+        }
+
+        document.getElementById('modalOverlay').style.display = 'block';
+        document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('modal-body').innerHTML = '';
+    }
+
+    function saveChanges() {
+        const salary = document.getElementById('editSalary').value;
+        const rewardAmount = document.getElementById('editRewardAmount').value;
+        const rewardReason = document.getElementById('editRewardReason').value;
+
+        if (salary && rewardAmount && rewardReason) {
+            const employee = employees.find(emp => emp.idnhanvien === currentEmployeeId);
+
+            // Cập nhật thông tin trong bảng
+            employee.luong = salary;
+            employee.reward = `${rewardAmount} (${rewardReason})`; // Cập nhật thưởng và lý do
+
+            // Gửi dữ liệu lên API nhân viên, bao gồm cả lương và thưởng
+            fetch(`http://localhost:8083/nhanvien/update/${currentEmployeeId}`, {
+                method: 'PUT', // Sử dụng PUT để thay đổi toàn bộ thông tin
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    luong: salary, // Chỉ gửi lương
+                    thuong: rewardAmount, // Tiền thưởng
+                    lydo: rewardReason, // Lý do thưởng
+                }),
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Employee updated:', data);
+                })
+                .catch(error => {
+                    console.error('Error updating employee data:', error);
+                });
+
+            renderTable(); // Cập nhật lại bảng nhân viên
+            closeModal(); // Đóng modal
+        } else {
+            alert('Please fill in all fields.');
+        }
+    }
+
+
+
+    // Fetch employee data and rewards when the page loads
+    fetchEmployees();
+
+</script>
+</body>
+</html>

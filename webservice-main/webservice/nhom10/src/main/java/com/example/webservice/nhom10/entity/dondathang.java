@@ -34,7 +34,7 @@ public class dondathang {
 
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
-    private nhanvien nhanvien;
+    private com.example.webservice.nhom10.entity.nhanvien nhanvien;
 
     @OneToMany(mappedBy = "dondathang", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
     private List<ban> bans;

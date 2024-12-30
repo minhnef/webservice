@@ -12,6 +12,28 @@
     <link rel="stylesheet" href="../css/lichlamviec.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/header.css">
+    <style>
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Màu nền cho thông báo thành công */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            font-size: 16px;
+            z-index: 9999;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .notification.error {
+            background-color: #f44336; /* Màu nền cho thông báo lỗi */
+        }
+
+    </style>
 </head>
 
 <body>
@@ -67,77 +89,22 @@
             <!-- Nút thêm lịch -->
             <button class="btn btn-add" onclick="openModal('add')">Thêm Lịch</button>
 
-            <!-- Bảng lịch làm việc -->
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên Nhân Viên</th>
-                        <th>Ca Làm</th>
-                        <th>Ngày</th>
-                        <th>Chức Vụ</th>
-                        <th>Thao Tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>Sáng</td>
-                        <td>17/12/2024</td>
-                        <td>Phục Vụ</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
-                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>Sáng</td>
-                        <td>17/12/2024</td>
-                        <td>Phục Vụ</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
-                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>Sáng</td>
-                        <td>17/12/2024</td>
-                        <td>Phục Vụ</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
-                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>Sáng</td>
-                        <td>17/12/2024</td>
-                        <td>Phục Vụ</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
-                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Nguyễn Văn A</td>
-                        <td>Sáng</td>
-                        <td>17/12/2024</td>
-                        <td>Phục Vụ</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="openModal('edit')">Chỉnh Sửa</button>
-                            <button class="btn btn-delete" onclick="openModal('delete')">Xóa</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <!-- Bảng lịch làm việc -->
+        <table class="schedule-table">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên Nhân Viên</th>
+                <th>Ngày Bắt Đầu</th>
+                <th>Ngày Kết Thúc</th>
+                <th>Thao Tác</th>
+            </tr>
+            </thead>
+            <tbody id="schedule-table-body">
+            <!-- Các dòng dữ liệu sẽ được thêm vào ở đây thông qua JavaScript -->
+            </tbody>
+        </table>
+    </div>
 
         <!-- Modal -->
         <div id="modal" class="modal">
