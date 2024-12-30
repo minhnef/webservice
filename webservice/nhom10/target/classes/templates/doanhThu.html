@@ -1,90 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phần mềm quản lý cửa hàng</title>
-    <link rel="stylesheet" href="doanhThu.html">
+    <title>Doanh thu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/doanhthu.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/header.css">
 </head>
+
 <body>
-
-<!-- Header -->
-<div class="header">
-    PHẦN MỀM QUẢN LÝ CỬA HÀNG
-</div>
-
-<!-- Navigation Bar -->
-<div class="navbar">
-    <a href="#">Quản Lý Đơn Hàng</a>
-    <a href="#">Quản Lý Tồn Kho</a>
-    <a href="#">Quản Lý Sản Phẩm</a>
-    <a href="#">Kế Toán</a>
-    <a href="#">Bảo Hành</a>
-</div>
-
-<!-- Report Section -->
-<div class="report">
-    <div class="summary">
-        <div class="card">
-            <h3>Đơn hàng</h3>
-            <p>2 Đơn</p>
-        </div>
-        <div class="card">
-            <h3>Doanh thu</h3>
-            <p>4.870.000 đ</p>
-        </div>
-        <div class="card">
-            <h3>Nhập kho</h3>
-            <p>50.000.000 đ</p>
-        </div>
-        <div class="card">
-            <h3>Tổng chi</h3>
-            <p>10.000.000 đ</p>
-        </div>
+<!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
     </div>
-
-    <!-- Chart Section -->
-    <div class="chart">
-        <h3>Biểu đồ thống kê doanh thu & lợi nhuận</h3>
-        <canvas id="chartCanvas"></canvas>
+    <div class="title"><img class="logo-main" src="../img/Logo2.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
     </div>
 </div>
+<div style="display: flex;">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-item" id="homeButton">
+            <i class="fa-solid fa-house navbar-icon"></i>
+            <span class="navbar-text">Trang chủ</span>
+        </div>
 
-<!-- Chart.js Script -->
+        <script>
+            document.getElementById('homeButton').addEventListener('click', function () {
+                // Lấy thông tin trang Home đã lưu từ localStorage
+                const homePage = localStorage.getItem('fromHome');
+
+                console.log(homePage); // Kiểm tra thông tin lưu trữ trong localStorage
+
+                if (homePage === 'nhanvien') {
+                    window.location.href = 'home-nhanvien.html';  // Quay lại trang Home của nhân viên
+                } else if (homePage === 'admin') {
+                    window.location.href = 'Home.html';  // Quay lại trang Home của admin
+                } else {
+                    window.location.href = 'home-nhanvien.html';  // Mặc định quay về Home của nhân viên nếu không có giá trị trong localStorage
+                }
+            });
+        </script>
+        <div class="navbar-item">
+            <i class="fa-solid fa-warehouse navbar-icon"></i>
+            <span class="navbar-text">Kho Nhiên Liệu</span>
+        </div>
+        <div class="navbar-item ">
+            <div class="menu-header" id="menuHeader">
+                <i class="fa-solid fa-utensils navbar-icon"></i>
+                <span class="menu-title">Thực đơn</span>
+                <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+            </div>
+        </div>
+        <div class="menu-items" id="menuItems" style="display: none;">
+            <div class="navbar-item">
+                <a href="danhsachmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-list navbar-icon"></i>
+                    <span class="navbar-text">Danh sách món ăn</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="themmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-plus navbar-icon"></i>
+                    <span class="navbar-text">Thêm món ăn</span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="doanhthu.html" class="navbar-link">
+                <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                <span class="navbar-text">Doanh Thu</span>
+            </a>
+        </div>
+        <div class="navbar-item">
+            <a href="lichlamviec.html" class="navbar-link">
+                <i class="fa-solid fa-user-check navbar-icon"></i>
+                <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+            </a>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+            <span class="navbar-text">Danh Sách Đặt Bàn</span>
+        </div>
+    </div>
+    <script src="../js/header.js"></script>
+    <script>
+        document.getElementById('menuHeader').addEventListener('click', function () {
+            const menuItems = document.getElementById('menuItems');
+            const menuToggle = document.getElementById('menuToggle');
+
+            if (menuItems.style.display === 'none') {
+                menuItems.style.display = 'block';
+                menuToggle.classList.remove('fa-chevron-right');
+                menuToggle.classList.add('fa-chevron-down');
+            } else {
+                menuItems.style.display = 'none';
+                menuToggle.classList.remove('fa-chevron-down');
+                menuToggle.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
+    <div class="main-content">
+        <h1>Doanh Thu</h1>
+
+        <div class="filter-section">
+            <label for="filter">Hiển thị theo:</label>
+            <select id="filter" onchange="updateView()">
+                <option value="day">Ngày</option>
+                <option value="month">Tháng</option>
+            </select>
+        </div>
+
+        <div class="table-section">
+            <table id="revenueTable">
+                <thead>
+                <tr>
+                    <th>Thời gian</th>
+                    <th>Doanh thu offline</th>
+                    <th>Doanh thu online</th>
+                    <th>Tổng doanh thu</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="chart-container">
+            <h2>Biểu đồ Doanh Thu</h2>
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('chartCanvas').getContext('2d');
+    const revenueData = {
+        daily: [
+            { date: '01/12/2024', offline: 3000000, online: 2000000 },
+            { date: '02/12/2024', offline: 4000000, online: 3000000 },
+            // Thêm dữ liệu ngày khác...
+        ],
+        monthly: [
+            { month: '01/2024', offline: 10000000, online: 20000000 },
+            { month: '02/2024', offline: 20000000, online: 30000000 },
+            { month: '03/2024', offline: 30000000, online: 40000000 },
+            { month: '04/2024', offline: 40000000, online: 50000000 },
+            { month: '05/2024', offline: 50000000, online: 60000000 },
+            { month: '06/2024', offline: 60000000, online: 70000000 },
+            { month: '07/2024', offline: 70000000, online: 80000000 },
+            { month: '08/2024', offline: 80000000, online: 90000000 },
+            { month: '09/2024', offline: 90000000, online: 100000000 },
+            { month: '10/2024', offline: 100000000, online: 110000000 },
+            { month: '11/2024', offline: 110000000, online: 12000000 },
+            { month: '12/2024', offline: 10000000, online: 2000000 },
+            // Thêm dữ liệu tháng khác...
+        ]
+    };
+    function updateView() {
+        const filter = document.getElementById('filter').value;
+        const tableBody = document.querySelector('#revenueTable tbody');
+        tableBody.innerHTML = ''; // Xóa dữ liệu cũ
+
+        let labels = [];
+        let offlineData = [];
+        let onlineData = [];
+
+        if (filter === 'day') {
+            revenueData.daily.forEach(item => {
+                const total = item.offline + item.online;
+                labels.push(item.date);
+                offlineData.push(item.offline);
+                onlineData.push(item.online);
+
+                tableBody.innerHTML += `
+                <tr>
+                    <td>${item.date}</td>
+                    <td>${item.offline.toLocaleString()} VND</td>
+                    <td>${item.online.toLocaleString()} VND</td>
+                    <td>${total.toLocaleString()} VND</td>
+                </tr>
+            `;
+            });
+        } else if (filter === 'month') {
+            revenueData.monthly.forEach(item => {
+                const total = item.offline + item.online;
+                labels.push(item.month);
+                offlineData.push(item.offline);
+                onlineData.push(item.online);
+
+                tableBody.innerHTML += `
+                <tr>
+                    <td>${item.month}</td>
+                    <td>${item.offline.toLocaleString()} VND</td>
+                    <td>${item.online.toLocaleString()} VND</td>
+                    <td>${total.toLocaleString()} VND</td>
+                </tr>
+            `;
+            });
+        }
+
+        // Cập nhật biểu đồ
+        updateChart(labels, offlineData, onlineData);
+    }
+
+    function updateChart(labels, offlineData, onlineData) {
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = offlineData;
+        chart.data.datasets[1].data = onlineData;
+        chart.update();
+    }
+
+    // Khởi tạo biểu đồ
+    const ctx = document.getElementById('chart').getContext('2d');
     const chart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+            labels: [],
             datasets: [
                 {
-                    label: 'Doanh thu',
-                    data: [500000, 1000000, 1500000, 2000000, 2500000, 3000000],
-                    borderColor: 'blue',
-                    borderWidth: 2,
-                    fill: false
+                    label: 'Doanh thu offline',
+                    data: [],
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
                 },
                 {
-                    label: 'Lợi nhuận',
-                    data: [200000, 400000, 600000, 800000, 1000000, 1200000],
-                    borderColor: 'green',
-                    borderWidth: 2,
-                    fill: false
+                    label: 'Doanh thu online',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
                 }
             ]
         },
         options: {
             responsive: true,
             plugins: {
-                legend: {
-                    position: 'top',
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return context.raw.toLocaleString() + ' VND';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return value.toLocaleString() + ' VND';
+                        }
+                    }
                 }
             }
         }
     });
-</script>
 
+    // Hiển thị mặc định theo ngày
+    updateView();
+</script>
 </body>
+
 </html>
