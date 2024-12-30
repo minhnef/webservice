@@ -32,9 +32,9 @@ public class khachhang {
     @Column
     private String hoten;
     @Column
-    private LocalDate ngaysinh;
+    private LocalDate ngaydat;
     @Column
-    private String diachi;
+    private String giodat;
     @Pattern(regexp = "^\\[0-9]{10,15}$", message = "Số điện thoại không hợp lệ")
     @Column
     private String sdt;

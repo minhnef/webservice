@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web nhà hàng</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
@@ -15,7 +15,7 @@
     <div id="wrapper">
         <div id="header">
             <a href="main.html" class="logo">
-                <img src="images/Logo2.jpg" alt="Logo">
+                <img src="../static/images/Logo2.jpg" alt="Logo">
             </a>
             <div id="navbar">
                 <div class="item">
@@ -28,8 +28,9 @@
                     <a href="#" id="open-contact-modal">Liên hệ</a>
                 </div>
                 <div class="item">
-                    <a href="#" id="open-cart-modal">Giỏ hàng</a>
+                    <a href="../templates/danhgiamonan.html" id="open-cart-modal">Đánh giá</a>
                 </div>
+              
             </div>
         </div>
         <div id="banner">
@@ -47,9 +48,9 @@
                 </a>
             </div>
             <div class="box-right">
-                <img src="images/img1.jpg" alt="">
-                <img src="images/img2.jpg" alt="">
-                <img src="images/img3.png" alt="">
+                <img src="../static/images/img1.jpg" alt="">
+                <img src="../static/images/img2.jpg" alt="">
+                <img src="../static/images/img3.png" alt="">
             </div>
         </div>
         <div id="contact-modal" class="modal">
@@ -64,11 +65,11 @@
                     <input type="date" placeholder="Ngày đặt" required>
                     <input type="number" placeholder="Bạn đi cùng bao nhiêu người" required>
                     <textarea placeholder="Ghi chú"></textarea>
-                    <button type="submit">Đặt ngay</button>
+                    <button type="submit"><a id="btnDatban" href="../templates/danhsachban.html">Đặt ngay</a></button>
                 </form>
             </div>
         </div>
-        <script src="script.js"></script>
+        <script src="../static/js/script.js"></script>
         <div id="service-section">
             <div class="service-item">
                 <i class="fa-solid fa-truck-fast"></i>
@@ -98,7 +99,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/ga-u-muoi-thao-moc.png" alt="Gà ủ muối thảo mộc">
+                                <img class="card-image" src="../static/../static/images/ga-u-muoi-thao-moc.png" alt="Gà ủ muối thảo mộc">
                             </a>
                         </div>
                         <div class="food-info">
@@ -113,8 +114,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Gà ủ muối thảo mộc"
-                                        data-price="130.000₫" data-image="images/ga-u-muoi-thao-moc.png">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="130.000₫" data-image="../static/../static/images/ga-u-muoi-thao-moc.png">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -125,7 +126,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/dau-hu-xao-nam-chay.png" alt="Đậu hũ xào nấm chay">
+                                <img class="card-image" src="../static/../static/images/dau-hu-xao-nam-chay.png" alt="Đậu hũ xào nấm chay">
                             </a>
                         </div>
                         <div class="food-info">
@@ -140,8 +141,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Đậu hũ xào nấm chay"
-                                        data-price="50.000₫" data-image="images/dau-hu-xao-nam-chay.png">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="50.000₫" data-image="../static/../static/images/dau-hu-xao-nam-chay.png">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -152,7 +153,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/che-com-la-dua.jpeg" alt="Chè cốm lá dứa">
+                                <img class="card-image" src="../static/../static/images/che-com-la-dua.jpeg" alt="Chè cốm lá dứa">
                             </a>
                         </div>
                         <div class="food-info">
@@ -167,8 +168,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Chè cốm lá dứa"
-                                        data-price="40.000₫" data-image="images/che-com-la-dua.jpeg">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="40.000₫" data-image="../static/images/che-com-la-dua.jpeg">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -179,7 +180,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/com-chay-cha-bong.jpg" alt="Cơm cháy chà bông">
+                                <img class="card-image" src="../static/images/com-chay-cha-bong.jpg" alt="Cơm cháy chà bông">
                             </a>
                         </div>
                         <div class="food-info">
@@ -194,8 +195,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Cơm cháy chà bông"
-                                        data-price="40.000₫" data-image="images/com-chay-cha-bong.jpg">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="40.000₫" data-image="../static/images/com-chay-cha-bong.jpg">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -206,7 +207,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/ga-khong-loi-thoat.png" alt="Gà không lối thoát">
+                                <img class="card-image" src="../static/images/ga-khong-loi-thoat.png" alt="Gà không lối thoát">
                             </a>
                         </div>
                         <div class="food-info">
@@ -221,8 +222,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Gà không lối thoát"
-                                        data-price="140.000₫" data-image="images/ga-khong-loi-thoat.png">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="140.000₫" data-image="../static/images/ga-khong-loi-thoat.png">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -233,7 +234,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/nom-ga-hoi-an.png" alt="Nộm gà Hội An">
+                                <img class="card-image" src="../static/images/nom-ga-hoi-an.png" alt="Nộm gà Hội An">
                             </a>
                         </div>
                         <div class="food-info">
@@ -248,8 +249,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Nộm gà Hội An"
-                                        data-price="70.000₫" data-image="images/nom-ga-hoi-an.png">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-price="70.000₫" data-image="../static/images/nom-ga-hoi-an.png">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -260,7 +261,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/nem-chay.png" alt="Nem chay">
+                                <img class="card-image" src="../static/images/nem-chay.png" alt="Nem chay">
                             </a>
                         </div>
                         <div class="food-info">
@@ -275,8 +276,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Nem chay" data-price="45.000₫"
-                                        data-image="images/nem-chay.png">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-image="../static/images/nem-chay.png">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
@@ -287,7 +288,7 @@
                     <article class="card-product">
                         <div class="card-header">
                             <a href="#" class="card-image-link">
-                                <img class="card-image" src="images/vit-om-sau.jpeg" alt="Vịt om sấu">
+                                <img class="card-image" src="../static/images/vit-om-sau.jpeg" alt="Vịt om sấu">
                             </a>
                         </div>
                         <div class="food-info">
@@ -302,8 +303,8 @@
                                 </div>
                                 <div class="product-buy">
                                     <button class="card-button order-item" data-title="Vịt om sấu" data-price="140.000₫"
-                                        data-image="images/vit-om-sau.jpeg">
-                                        <i class="fa-solid fa-cart-shopping"></i> Đặt món
+                                        data-image="../static/images/vit-om-sau.jpeg">
+                                        <i class="fa-solid fa-cart-shopping"></i> Chi tiết
                                     </button>
                                 </div>
                             </div>
