@@ -38,34 +38,34 @@ public class LichLamViecService {
 
 
 
-//    @Autowired
-//    private NhanVienRepository nhanVienRepository;
-//
-//    @Transactional
-//    public LichLamViecDTO addLichLamViec(String hoten, LocalDate ngayBatDau, LocalDate ngayKetThuc) {
-//        // Tìm kiếm nhân viên theo tên
-//        nhanvien nhanVien = nhanVienRepository.findByHoten(hoten);
-//
-//
-//        // Tạo một đối tượng LichLamViec mới và thiết lập các thông tin
-//        lichlamviec lichLamViec = new lichlamviec();
-//        lichLamViec.setNgaybatdau(ngayBatDau);
-//        lichLamViec.setNgayketthuc(ngayKetThuc);
-//        lichLamViec.setNhanvien(nhanVien);
-//
-//        // Lưu lịch làm việc vào cơ sở dữ liệu
-//        lichlamviec savedLichLamViec = lichLamViecRepository.save(lichLamViec);
-//
-//        // Chuyển đổi đối tượng LichLamViec thành LichLamViecDTO để trả về
-//        LichLamViecDTO lichLamViecDTO = new LichLamViecDTO();
-//        lichLamViecDTO.setId(savedLichLamViec.getIdlichlam());
-//        lichLamViecDTO.setNgaybatdau(savedLichLamViec.getNgaybatdau());
-//        lichLamViecDTO.setNgayketthuc(savedLichLamViec.getNgayketthuc());
-//        lichLamViecDTO.setIdnhanvien(nhanVien.getIdnhanvien());
-//        lichLamViecDTO.setHoten(nhanVien.getHoten());
-//
-//        return lichLamViecDTO;
-//    }
+    @Autowired
+    private NhanVienRepository nhanVienRepository;
+
+    @Transactional
+    public LichLamViecDTO addLichLamViec(String hoten, LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+        // Tìm kiếm nhân viên theo tên
+        nhanvien nhanVien = nhanVienRepository.findByHoten(hoten);
+
+
+        // Tạo một đối tượng LichLamViec mới và thiết lập các thông tin
+        lichlamviec lichLamViec = new lichlamviec();
+        lichLamViec.setNgayBatDau(ngayBatDau);
+        lichLamViec.setNgayKetThuc(ngayKetThuc);
+        lichLamViec.setNhanvien(nhanVien);
+
+        // Lưu lịch làm việc vào cơ sở dữ liệu
+         lichLamViecRepository.save(lichLamViec);
+
+        // Chuyển đổi đối tượng LichLamViec thành LichLamViecDTO để trả về
+        LichLamViecDTO lichLamViecDTO = new LichLamViecDTO();
+        lichLamViecDTO.setId(lichLamViec.getIdlichlam());
+        lichLamViecDTO.setNgaybatdau(lichLamViec.getNgaybatdau());
+        lichLamViecDTO.setNgayketthuc(lichLamViec.getNgayketthuc());
+        lichLamViecDTO.setIdnhanvien(nhanVien.getIdnhanvien());
+        lichLamViecDTO.setHoten(nhanVien.getHoten());
+
+        return lichLamViecDTO;
+    }
 
 
     public boolean updateLichLamViec(int id, LocalDate ngayBatDau, LocalDate ngayKetThuc) {

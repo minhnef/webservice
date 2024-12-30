@@ -38,4 +38,43 @@ public class LichLamViecDTO {
         this.hoten = hoTenNhanVien;  // Lưu ý dùng đúng tên trường 'hoten'
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getNgaybatdau() {
+        return ngaybatdau;
+    }
+
+    public void setNgaybatdau(LocalDate ngaybatdau) {
+        this.ngaybatdau = ngaybatdau;
+    }
+
+    public LocalDate getNgayketthuc() {
+        return ngayketthuc;
+    }
+
+    public void setNgayketthuc(LocalDate ngayketthuc) {
+        this.ngayketthuc = ngayketthuc;
+    }
+
+    public int getIdnhanvien() {
+        return idnhanvien;
+    }
+
+    public void setIdnhanvien(int idnhanvien) {
+        this.idnhanvien = idnhanvien;
+    }
+
+    public String getHoten() {
+        return hoten;
+    }
+
+    public void setHoten(String hoten) {
+        this.hoten = hoten;
+    }
 }

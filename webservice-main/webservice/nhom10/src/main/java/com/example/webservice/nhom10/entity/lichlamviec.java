@@ -35,7 +35,7 @@ public class lichlamviec {
     @Column
     private LocalDate ngayketthuc;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idnhanvien")
     @JsonIgnore
     private com.example.webservice.nhom10.entity.nhanvien nhanvien;
@@ -66,4 +66,7 @@ public class lichlamviec {
         return nhanvien;
     }
 
+    public void setNhanvien(com.example.webservice.nhom10.entity.nhanvien nhanvien) {
+        this.nhanvien = nhanvien;
+    }
 }

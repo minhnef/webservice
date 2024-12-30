@@ -254,7 +254,7 @@
                 employees.forEach(employee => {
                     const reward = rewards.find(r => r.idnhanvien === employee.idnhanvien);
                     if (reward) {
-                        employee.reward = `${reward.thuong} (${reward.lydo})`; // Thêm thông tin thưởng vào nhân viên
+                        employee.reward = `${reward.thuong} VND (${reward.lydo})`; // Thêm thông tin thưởng vào nhân viên
                     }
                 });
                 renderTable(); // Render lại bảng với thông tin thưởng
@@ -271,8 +271,8 @@
         <tr>
             <td>${employee.idnhanvien}</td>
             <td>${employee.hoten}</td>
-            <td>${employee.luong || ''}</td>
-            <td>${employee.reward || ''}</td>
+            <td>${employee.luong + " VND" || '' }</td>
+            <td>${employee.reward || '' }</td>
             <td>
                 <button class="edit" onclick="openModal('edit', ${employee.idnhanvien})">Chỉnh Sửa</button>
             </td>

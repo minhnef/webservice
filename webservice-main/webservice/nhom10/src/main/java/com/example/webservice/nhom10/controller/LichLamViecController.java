@@ -23,17 +23,17 @@ public class LichLamViecController {
         return lichLamViecService.getAllLichLamViec();
     }
 
-//    @PostMapping("/add")
-//    public ResponseEntity<LichLamViecDTO> addLichLamViec(@RequestBody LichLamViecRequest request) {
-//        // Gọi service để xử lý yêu cầu
-//        LichLamViecDTO lichLamViecDTO = lichLamViecService.addLichLamViec(
-//                request.getHoten(),
-//                request.getNgayBatDau(),
-//                request.getNgayKetThuc()
-//        );
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(lichLamViecDTO);
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<LichLamViecDTO> addLichLamViec(@RequestBody LichLamViecRequest request) {
+        // Gọi service để xử lý yêu cầu
+        LichLamViecDTO lichLamViecDTO = lichLamViecService.addLichLamViec(
+                request.getHoTen(),
+                request.getNgayBatDau(),
+                request.getNgayKetThuc()
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(lichLamViecDTO);
+    }
 
 
 
