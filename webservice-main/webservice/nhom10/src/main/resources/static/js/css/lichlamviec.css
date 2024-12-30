@@ -116,3 +116,22 @@ h1 {
 .delete-btn {
     background-color: #ff7d73;
 }
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Màu nền cho thông báo thành công */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    font-size: 16px;
+    z-index: 9999;
+    max-width: 300px;
+    text-align: center;
+}
+
+.notification.error {
+    background-color: #f44336; /* Màu nền cho thông báo lỗi */
+}
