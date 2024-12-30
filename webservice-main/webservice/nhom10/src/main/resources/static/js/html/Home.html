@@ -16,7 +16,7 @@
         <span>Time: </span>
         <div class="time" id="currentTime">--:--</div>
     </div>
-    <div class="title"><img class="logo-main" src="../img/jjj.jpg" alt=""></div>
+    <div class="title"><img class="logo-main" src="../img/Logo2.jpg" alt=""></div>
     <div class="admin-section" style="width: 300px; justify-content: end;">
         <img src="../img/User_icon_2.svg.png" alt="Admin Avatar">
         <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
@@ -27,31 +27,73 @@
 <div class="app-container" style="display: flex;">
     <!-- navbar -->
     <div class="navbar">
-        <div class="navbar-item active">
-            <i class="fas fa-tachometer-alt navbar-icon"></i>
-            <span class="navbar-text">Home</span>
+        <div class="navbar-item ">
+            <i class="fa-solid fa-house navbar-icon"></i>
+            <span class="navbar-text">Trang chủ</span>
         </div>
+        <script>
+            // Lưu thông tin trang "home-admin.html" vào localStorage
+            localStorage.setItem('fromHome', 'admin');
+          </script>          
         <div class="navbar-item">
-            <i class="fas fa-box-open navbar-icon"></i>
+            <i class="fa-solid fa-warehouse navbar-icon"></i>
             <span class="navbar-text">Kho Nhiên Liệu</span>
         </div>
-        <div class="navbar-item">
-            <i class="fas fa-utensils navbar-icon"></i>
-            <span class="navbar-text">Menus</span>
+        <div class="navbar-item ">
+            <div class="menu-header" id="menuHeader">
+                <i class="fa-solid fa-utensils navbar-icon"></i>
+                <span class="menu-title">Thực đơn</span>
+                <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+            </div>
+        </div>
+        <div class="menu-items" id="menuItems" style="display: none;">
+            <div class="navbar-item">
+                <a href="danhsachmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-list navbar-icon"></i>
+                    <span class="navbar-text">Danh sách món ăn</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="themmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-plus navbar-icon"></i>
+                    <span class="navbar-text">Thêm món ăn</span>
+                </a>
+            </div>
         </div>
         <div class="navbar-item">
-            <i class="fas fa-users navbar-icon "></i>
-            <span class="navbar-text">Doanh Thu</span>
+            <a href="doanhthu.html" class="navbar-link">
+                <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                <span class="navbar-text">Doanh Thu</span>
+            </a>
         </div>
         <div class="navbar-item">
-            <i class="fa-solid fa-user-check navbar-icon "></i>
-            <span class="navbar-text">Duyệt Nghỉ Phép</span>
+            <a href="lichlamviec.html" class="navbar-link">
+                <i class="fa-solid fa-user-check navbar-icon"></i>
+                <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+            </a>
         </div>
         <div class="navbar-item">
             <i class="fa-solid fa-clipboard-list navbar-icon"></i>
             <span class="navbar-text">Danh Sách Đặt Bàn</span>
         </div>
     </div>
+    <script src="../js/header.js"></script>
+    <script>
+        document.getElementById('menuHeader').addEventListener('click', function () {
+            const menuItems = document.getElementById('menuItems');
+            const menuToggle = document.getElementById('menuToggle');
+
+            if (menuItems.style.display === 'none') {
+                menuItems.style.display = 'block';
+                menuToggle.classList.remove('fa-chevron-right');
+                menuToggle.classList.add('fa-chevron-down');
+            } else {
+                menuItems.style.display = 'none';
+                menuToggle.classList.remove('fa-chevron-down');
+                menuToggle.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
     <div class="container">
 
         <!-- Header Section -->

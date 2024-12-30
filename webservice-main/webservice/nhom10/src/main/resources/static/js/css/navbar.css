@@ -19,15 +19,7 @@
         }
 
         .navbar-item:hover {
-            background-color: #495057;
-        }
-
-        .navbar-item.active {
-            background-color: #28a745;
-        }
-
-        .navbar-item.active .navbar-text {
-            color: white;
+            background-color: #4d4b4b;
         }
 
         .navbar-icon {
@@ -38,4 +30,20 @@
         .navbar-text {
             font-size: 16px;
             font-weight: 500;
+        }
+
+        .navbar-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            width: 100%;
+            color: #000;
+        }
+
+        .menu-items {
+            text-decoration: none;
+            display: none;
+            flex-direction: column;
+            margin-left: 10px;
+            color: #000;
         }
