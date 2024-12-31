@@ -1,11 +1,12 @@
 function chamcong() {
     let idnhanvien = document.getElementById('idnv').value;
+    let maxt = document.getElementById('maxacthuc').value;
 
     if(idnhanvien===''){
         alert("Vui lòng nhập ID nhân viên!")
         return
     }
-    let url = `http://localhost:8082/apinhanvien/chamcong?id=${idnhanvien}`;
+    let url = `http://localhost:8082/apinhanvien/chamcong?id=${idnhanvien}&maxt=${maxt}`;
 
     fetch(url, {
         method: 'GET',

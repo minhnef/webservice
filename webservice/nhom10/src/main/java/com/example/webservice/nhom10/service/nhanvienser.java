@@ -24,13 +24,15 @@ public class nhanvienser implements inhanvienser {
 
 
     @Override
-    public String chamcCongNhanVien(int id) {
+    public String chamcCongNhanVien(int id, String maxt) {
         
         try {
             Optional<nhanvien> optional = nhanvienrepo.findById(id);
             if (optional.isPresent()) {
                 nhanvien nhanvien = optional.get();
-        
+                if(!nhanvien.getTaikhoannv().getMaxacthuc().equals(maxt)){
+                    return "Mã xác thực không hợp lệ";
+                }
                 LocalDateTime time = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
                 String thoigian = time.format(formatter);

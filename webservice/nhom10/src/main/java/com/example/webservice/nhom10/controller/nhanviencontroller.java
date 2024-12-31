@@ -17,8 +17,8 @@ public class nhanviencontroller {
     nhanvienser nhanvienser;
 
     @GetMapping("/chamcong")
-    public ResponseEntity<?> chamCong(@RequestParam int id) {
-       return ResponseEntity.ok(nhanvienser.chamcCongNhanVien(id));
+    public ResponseEntity<?> chamCong(@RequestParam int id, @RequestParam String maxt) {
+       return ResponseEntity.ok(nhanvienser.chamcCongNhanVien(id, maxt));
     }
 
 }

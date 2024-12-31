@@ -46,7 +46,7 @@ body {
 
 #banner {
     width: 100%;
-    background-image: url("images/bg3dark.jpg");
+    background-image: url("../images/bg3dark.jpg");
     background-size: cover;
     height: 463px;
     display: flex;

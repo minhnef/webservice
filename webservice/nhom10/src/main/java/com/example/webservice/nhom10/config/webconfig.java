@@ -7,10 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class webconfig implements WebMvcConfigurer {
 
-    // @Override
-    // public void configureHttpMessageConverters(List<HttpMessageConverter<?>> converters) {
-    //     // ... các cấu hình khác ...
-    // }
+ 
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
