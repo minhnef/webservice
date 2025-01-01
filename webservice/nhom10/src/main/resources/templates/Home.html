@@ -23,8 +23,10 @@
         <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
         <div class="admin-section" style="width: 300px; justify-content: end;">
             <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
-            <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
-            <button class="logout-btn">Đăng xuất</button>
+            <a href="../templates/login.html">
+                <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+                <button class="logout-btn">Đăng xuất</button>
+            </a>
         </div>
     </div>
     <!-- app home -->
@@ -40,7 +42,7 @@
                 localStorage.setItem('fromHome', 'admin');
             </script>
             <div class="navbar-item">
-                <a href="../templates/html/nguyenlieu/nguyenlieu.html" class="navbar-link">
+                <a href="http://localhost:8082/kho" class="navbar-link">
                     <i class="fa-solid fa-warehouse navbar-icon"></i>
                     <span class="navbar-text">Kho Nhiên Liệu</span>
                 </a>
@@ -54,7 +56,7 @@
             </div>
             <div class="menu-items" id="menuItems" style="display: none;">
                 <div class="navbar-item">
-                    <a href="../templates/html/monan/monan.html" class="navbar-link">
+                    <a href="http://localhost:8082/monan" class="navbar-link">
                         <i class="fa-solid fa-list navbar-icon"></i>
                         <span class="navbar-text">Danh sách món ăn</span>
                     </a>
@@ -79,9 +81,12 @@
                 </a>
             </div>
             <div class="navbar-item">
-                <i class="fa-solid fa-clipboard-list navbar-icon"></i>
-                <span class="navbar-text">Danh Sách Đặt Bàn</span>
+                <a href="../templates/danhsachdatban.html" class="navbar-link">
+                    <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+                    <span class="navbar-text">Danh Sách Đặt Bàn</span>
+                </a>
             </div>
+
             <div class="navbar-item">
                 <a href="luongthuong.html" class="navbar-link">
                     <i class="fa-solid fa-money-bill navbar-icon"></i>

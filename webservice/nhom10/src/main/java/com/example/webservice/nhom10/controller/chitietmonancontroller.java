@@ -20,17 +20,17 @@ public class chitietmonancontroller {
 
     @GetMapping("/danhgia")
     public String danhgia(@RequestParam String mahoatenmon, @RequestParam String mahoadanhgia) {
-        String tenmon, danhgia;
-        try {
-             tenmon = URLDecoder.decode(mahoatenmon, "UTF-8");
-             danhgia = URLDecoder.decode(mahoadanhgia, "UTF-8");
-        } catch (Exception e) {
-            // TODO: handle exception
-            return e.getMessage();
-        }
+        // String tenmon, danhgia;
+        // try {
+        //      tenmon = URLDecoder.decode(mahoatenmon, "UTF-8");
+        //      danhgia = URLDecoder.decode(mahoadanhgia, "UTF-8");
+        // } catch (Exception e) {
+        //     // TODO: handle exception
+        //     return e.getMessage();
+        // }
         
         
-        return chitietmonanser.danhgiamonan(tenmon, danhgia);
+        return chitietmonanser.danhgiamonan(mahoatenmon, mahoadanhgia);
     }
 
 }

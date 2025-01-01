@@ -22,7 +22,7 @@ function datBan() {
     // const selectedBans = Array.from(document.querySelectorAll('.selectBan:checked')).map(input => input.getAttribute('data-id'));
     const selectedBanIds = Array.from(document.querySelectorAll('.selectBan:checked'))
   .map(input => parseInt(input.getAttribute('data-id')));
-    alert(selectedBanIds)
+   
     if (selectedBanIds.length > 0) {
         fetch(`http://localhost:8082/apidatban/datban`, {
             method: 'PUT',

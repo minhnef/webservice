@@ -113,8 +113,7 @@ function apvoucher() {
         id: parseInt(iddh),
         voucher: voucher
     };
-    alert(iddh)
-    alert(voucher)
+    
     let url = `http://localhost:8082/apidonhang/apmavoucher`
 
     fetch(url, {

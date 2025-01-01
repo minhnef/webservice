@@ -42,9 +42,8 @@ public class monanctl {
         // tạo optional để luư đối tượng personEdit
         Optional<monan> monans = monanRepo.findById(id);
 
-        // kiếm tra nếu tồn tại thì thực hiện biểu thức lambda xong return về biến
-        // person bằng ifPresent của optional
         monans.ifPresent(monan -> model.addAttribute("monans", monan));
+        monans.ifPresent(monan -> System.out.println(monan.getIdmonan()));
 
         // trả ve form editPerson
         model.addAttribute("listdm", danhMucRepo.findAll());

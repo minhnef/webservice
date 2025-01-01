@@ -100,7 +100,7 @@
                 </a>
             </div>
         </div>
-        <script src="../js/header.js"></script>
+        <script src="../static/js/header.js"></script>
         <script>
             document.getElementById('menuHeader').addEventListener('click', function () {
                 const menuItems = document.getElementById('menuItems');
@@ -159,7 +159,7 @@
         let currentEmployeeId = null;
 
         function fetchEmployees() {
-            fetch('http://localhost:8083/nhanvien/all')
+            fetch('http://localhost:8082/apinhanvien/all')
                 .then(response => response.json())
                 .then(data => {
                     employees = data;
@@ -169,7 +169,7 @@
         }
 
         function fetchRewards() {
-            fetch('http://localhost:8083/thuong')  // API thưởng
+            fetch('http://localhost:8082/thuong')  // API thưởng
                 .then(response => response.json())
                 .then(data => {
                     rewards = data;
@@ -243,7 +243,7 @@
                 employee.reward = `${rewardAmount} (${rewardReason})`; // Cập nhật thưởng và lý do
 
                 // Gửi dữ liệu lên API nhân viên, bao gồm cả lương và thưởng
-                fetch(`http://localhost:8083/nhanvien/update/${currentEmployeeId}`, {
+                fetch(`http://localhost:8082/apinhanvien/update/${currentEmployeeId}`, {
                     method: 'PUT', // Sử dụng PUT để thay đổi toàn bộ thông tin
                     headers: {
                         'Content-Type': 'application/json',

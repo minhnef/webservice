@@ -13,7 +13,7 @@ function danhgia() {
     }
 
     // Mã hóa các giá trị nhập liệu để đảm bảo chúng được truyền đúng cách trong URL
-    let url = `http://localhost:8082/apichitiet/danhgia?mahoatenmon=${encodeURIComponent(tenmonan)}&mahoadanhgia=${encodeURIComponent(comment)}`;
+    let url = `http://localhost:8082/apichitiet/danhgia?mahoatenmon=${tenmonan}&mahoadanhgia=${comment}`;
 
     // Gửi yêu cầu GET đến máy chủ
     fetch(url,{

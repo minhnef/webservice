@@ -20,17 +20,17 @@ public class taikhoanser implements itaikhoanser {
     public Map<String, String> dangnhap(taikhoandto taikhoandto) {
         Optional<taikhoan> optaikhoan = taikhoanrepo.findByUsername(taikhoandto.getUsername());
         Map<String, String> response = new HashMap<>();
-        if (taikhoandto.getUsername().equals("quanly1") && taikhoandto.getPassword().equals("234567")) {
-            response.put("message", "Đăng nhập thành công");
-            response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/Home.html"); 
-            return response;
-        }
-        if (taikhoandto.getUsername().equals("nhanvien1") && taikhoandto.getPassword().equals("123456")) {
-            response.put("message", "Đăng nhập thành công");
-            response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/home-nhanvien.html"); // Đường
+        // if (taikhoandto.getUsername().equals("quanly1") && taikhoandto.getPassword().equals("234567")) {
+        //     response.put("message", "Đăng nhập thành công");
+        //     response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/Home.html"); 
+        //     return response;
+        // }
+        // if (taikhoandto.getUsername().equals("nhanvien1") && taikhoandto.getPassword().equals("123456")) {
+        //     response.put("message", "Đăng nhập thành công");
+        //     response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/home-nhanvien.html"); // Đường
                                                                                                                 
-            return response;
-        }
+        //     return response;
+        // }
         if (optaikhoan.isPresent()) {
             taikhoan taikhoan = optaikhoan.get();
             if (taikhoan.getMatkhau().equals(taikhoandto.getPassword())) {
