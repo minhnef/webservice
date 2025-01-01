@@ -27,7 +27,7 @@ public class KhoController {
         }
 
         model.addAttribute("nguyenlieu", nguyenlieus);
-        return "nguyenlieu";
+        return "html/nguyenlieu/nguyenlieu";
     }
     @RequestMapping(value = "edit", method = RequestMethod.GET)
     public String editPerson(@RequestParam("id") int id, Model model) {
@@ -43,7 +43,7 @@ public class KhoController {
         );
         //trả ve form editPerson
 
-        return "html/edit";
+        return "html/nguyenlieu/edit";
     }
     @RequestMapping("/search")
     public String search(@RequestParam("value") String value,
@@ -56,25 +56,27 @@ public class KhoController {
         //thêm thuộc tính vào đối tượng model với key là persons và value là persons
         model.addAttribute("nguyenlieu",nguyenlieu);
 //trả về index.html
-        return "nguyenlieu";
+        return "html/nguyenlieu/nguyenlieu";
     }
 
     @RequestMapping(value = "/add")
     public String add(Model model) {
         // Thêm thuộc tính vào đối tượng model với key là "nguyenlieu" và value là new kho()
         model.addAttribute("nguyenlieu", new kho());
-        return "add";
+        return "html/nguyenlieu/add";
     }
 
-    @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String showForm(Model model) {
-        model.addAttribute("nguyenlieu", new kho());
-        return "form";
-    }
+//    @RequestMapping(value = "/form", method = RequestMethod.GET)
+//    public String showForm(Model model) {
+//        model.addAttribute("nguyenlieu", new kho());
+//        return "form";
+//    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute kho request) {
         // Lưu đối tượng kho vào khoRepo
+
+
         khoRepo.save(request);
 
         // Trả về trang chủ

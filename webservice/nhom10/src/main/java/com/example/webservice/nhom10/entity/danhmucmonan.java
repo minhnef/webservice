@@ -33,4 +33,35 @@ public class danhmucmonan {
     @OneToMany(mappedBy = "danhmuc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<monan> monans;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTendanhmuc() {
+        return tendanhmuc;
+    }
+
+    public void setTendanhmuc(String tendanhmuc) {
+        this.tendanhmuc = tendanhmuc;
+    }
+
+    public String getMota() {
+        return mota;
+    }
+
+    public void setMota(String mota) {
+        this.mota = mota;
+    }
+
+    public List<monan> getMonans() {
+        return monans;
+    }
+
+    public void setMonans(List<monan> monans) {
+        this.monans = monans;
+    }
 }

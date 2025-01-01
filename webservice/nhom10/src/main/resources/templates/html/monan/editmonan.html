@@ -1,0 +1,70 @@
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+        Chỉnh Sửa Món Ăn
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 font-roboto">
+<div class="container mx-auto p-4">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-center text-green-600">
+            Chỉnh Sửa Món Ăn
+        </h2>
+        <form th:object="${monans}" th:action="@{/monan/save}" method="post">
+            <div class="mb-6">
+                <input th:field="*{idmonan}" type="hidden"  />
+
+                <label class="block text-gray-700 font-bold mb-2" for="ten-mon">
+                    Tên Món
+                </label>
+                <input th:field="*{tenmon}"  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" id="ten-mon" name="ten-mon" placeholder="Nhập tên món ăn" type="text" value="Tên món hiện tại"/>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="gia">
+                    Giá
+                </label>
+                <input th:field="*{gia}"  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" id="gia" name="gia" placeholder="Nhập giá" type="number" value="Giá hiện tại"/>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2" for="anh">
+                    Chọn Ảnh
+                </label>
+                <input th:field="*{image}" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" id="anh" name="anh" type="text"/>
+
+            </div>
+            <div class="mb-6">
+                <label for="danh-muc" class="block text-gray-700 font-bold mb-2">Danh Mục</label>
+                <select th:field="*{danhmuc}"  id="danh-muc" name="danh-muc" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>Chọn danh muc</option>
+                    <option th:field="*{danhmuc}" th:each="dm : ${listdm}" th:value="${dm.id}" th:text="${dm.tendanhmuc}"></option>
+
+                </select>
+            </div>
+            <div class="flex justify-between">
+                <a class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" href="/monan">
+                    Trở Lại
+                </a>
+                <button class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+                    Lưu Thay Đổi
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

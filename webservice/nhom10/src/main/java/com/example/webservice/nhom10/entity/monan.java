@@ -45,4 +45,60 @@ public class monan {
     @OneToMany(mappedBy = "idmonan", cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
     private List<chitietmonan> chitietmonans;
 
+    public int getIdmonan() {
+        return idmonan;
+    }
+
+    public void setIdmonan(int idmonan) {
+        this.idmonan = idmonan;
+    }
+
+    public String getTenmon() {
+        return tenmon;
+    }
+
+    public void setTenmon(String tenmon) {
+        this.tenmon = tenmon;
+    }
+
+    public int getGia() {
+        return gia;
+    }
+
+    public void setGia(int gia) {
+        this.gia = gia;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public danhmucmonan getDanhmuc() {
+        return danhmuc;
+    }
+
+    public void setDanhmuc(danhmucmonan danhmuc) {
+        this.danhmuc = danhmuc;
+    }
+
+    public quanly getIdquanly() {
+        return idquanly;
+    }
+
+    public void setIdquanly(quanly idquanly) {
+        this.idquanly = idquanly;
+    }
+
+    public List<chitietmonan> getChitietmonans() {
+        return chitietmonans;
+    }
+
+    public void setChitietmonans(List<chitietmonan> chitietmonans) {
+        this.chitietmonans = chitietmonans;
+    }
+
 }
