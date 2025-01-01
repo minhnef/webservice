@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Làm Việc Nhân Viên</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../static/css/lichlamviec.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header-bar">
+        <div style="display: flex; width: 300px;">
+            <span>Time: </span>
+            <div class="time" id="currentTime">--:--</div>
+        </div>
+        <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+        <div class="admin-section" style="width: 300px; justify-content: end;">
+            <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+            <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+            <button class="logout-btn">Đăng xuất</button>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <!-- navbar -->
+        <div class="navbar">
+            <div class="navbar-item">
+                <a href="Home.html" class="navbar-link">
+                    <i class="fa-solid fa-house navbar-icon"></i>
+                    <span class="navbar-text">Trang chủ</span>
+                </a>
+            </div>
+            </script>
+            <div class="navbar-item">
+                <a href="../templates/html/nguyenlieu/nguyenlieu.html" class="navbar-link">
+                    <i class="fa-solid fa-warehouse navbar-icon"></i>
+                    <span class="navbar-text">Kho Nguyên Liệu</span>
+                </a>
+            </div>
+            <div class="navbar-item ">
+                <div class="menu-header" id="menuHeader">
+                    <i class="fa-solid fa-utensils navbar-icon"></i>
+                    <span class="menu-title">Thực đơn</span>
+                    <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+                </div>
+            </div>
+            <div class="menu-items" id="menuItems" style="display: none;">
+                <div class="navbar-item">
+                    <a href="../templates/html/monan/monan.html" class="navbar-link">
+                        <i class="fa-solid fa-list navbar-icon"></i>
+                        <span class="navbar-text">Danh sách món ăn</span>
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="../templates/html/monan/addmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-plus navbar-icon"></i>
+                        <span class="navbar-text">Thêm món ăn</span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="doanhthu.html" class="navbar-link">
+                    <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                    <span class="navbar-text">Doanh Thu</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="lichlamviec.html" class="navbar-link">
+                    <i class="fa-solid fa-user-check navbar-icon"></i>
+                    <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="danhsachdatban.html" class="navbar-link">
+                    <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+                    <span class="navbar-text">Danh Sách Đặt Bàn</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="luongthuong.html" class="navbar-link">
+                    <i class="fa-solid fa-money-bill navbar-icon"></i>
+                    <span class="navbar-text">Lương thưởng</span>
+                </a>
+            </div>
+        </div>
+        <script src="../static/js/header.js"></script>
+        <script>
+            document.getElementById('menuHeader').addEventListener('click', function () {
+                const menuItems = document.getElementById('menuItems');
+                const menuToggle = document.getElementById('menuToggle');
+
+                if (menuItems.style.display === 'none') {
+                    menuItems.style.display = 'block';
+                    menuToggle.classList.remove('fa-chevron-right');
+                    menuToggle.classList.add('fa-chevron-down');
+                } else {
+                    menuItems.style.display = 'none';
+                    menuToggle.classList.remove('fa-chevron-down');
+                    menuToggle.classList.add('fa-chevron-right');
+                }
+            });
+        </script>
+        <div class="container">
+            <h1>Lịch Làm Việc Nhân Viên</h1>
+    
+            <!-- Nút thêm lịch -->
+            <button class="btn btn-add" onclick="openModal('add')">Thêm Lịch</button>
+    
+            <!-- Bảng lịch làm việc -->
+            <table class="schedule-table">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Nhân Viên</th>
+                    <th>Ngày Bắt Đầu</th>
+                    <th>Ngày Kết Thúc</th>
+                    <th>Thao Tác</th>
+                </tr>
+                </thead>
+                <tbody id="schedule-table-body">
+                <!-- Các dòng dữ liệu sẽ được thêm vào ở đây thông qua JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    
+        <!-- Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" id="modal-header">Tiêu Đề</div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Nội dung modal -->
+                </div>
+                <div class="modal-footer" style="display: flex;">
+                    <button class="btn close-btn" onclick="closeModal()">Hủy</button>
+                    <button class="btn save-btn" style="display: none;" id="save-btn">Lưu</button>
+                    <button class="btn delete-btn" style="display: none;" id="delete-btn">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--model -->
+    <div id="notification" class="notification" style="display: none;">
+        <span id="notificationMessage"></span>
+    </div>
+    
+    <script src="../static/js/header.js"></script>
+    
+    <script>
+        const modal = document.getElementById('modal');
+        const modalHeader = document.getElementById('modal-header');
+        const modalBody = document.getElementById('modal-body');
+        const saveBtn = document.getElementById('save-btn');
+        const deleteBtn = document.getElementById('delete-btn');
+        const scheduleTableBody = document.getElementById('schedule-table-body');
+    
+        // Hàm lấy dữ liệu từ backend
+        async function fetchScheduleData() {
+            try {
+                const response = await fetch('http://localhost:8082/api/lichlamviec');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                renderScheduleTable(data);
+            } catch (error) {
+                console.error('Error fetching schedule data:', error);
+            }
+        }
+    
+        // Hàm render dữ liệu vào bảng
+        function renderScheduleTable(data) {
+            scheduleTableBody.innerHTML = ''; // Xóa dữ liệu cũ
+            data.forEach((item, index) => {
+                const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${item.hoTenNhanVien}</td>
+                            <td>${item.ngayBatDau}</td>
+                            <td>${item.ngayKetThuc}</td>
+                            <td>
+                                <button class="btn btn-edit" onclick="openModal('edit', ${item.id})">Chỉnh Sửa</button>
+                                <button class="btn btn-delete" onclick="openModal('delete', ${item.id})">Xóa</button>
+                            </td>
+                        </tr>
+                    `;
+                scheduleTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+    
+        // Hàm mở modal chỉnh sửa
+        function openModal(type, id = null) {
+            modal.style.display = 'flex';
+            modalBody.innerHTML = ''; // Reset nội dung trước khi mở
+            saveBtn.style.display = 'none';
+            deleteBtn.style.display = 'none';
+    
+            if (type === 'add') {
+                modalHeader.textContent = 'Thêm Lịch Làm Việc';
+                modalBody.innerHTML = `
+                <input type="text" id="employeeName" placeholder="Tên nhân viên" />
+                <input type="date" id="startDate" />
+                <input type="date" id="endDate" />
+            `;
+                saveBtn.style.display = 'block';
+            } else if (type === 'edit') {
+                modalHeader.textContent = 'Chỉnh Sửa Lịch Làm Việc';
+    
+                // Lấy toàn bộ dữ liệu lịch làm việc
+                fetch('http://localhost:8082/api/lichlamviec')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Tìm nhân viên với id tương ứng
+                        const employee = data.find(item => item.id === id);
+                        if (employee) {
+                            modalBody.innerHTML = `
+                            <input type="text" id="employeeName" placeholder="Tên nhân viên" value="${employee.hoTenNhanVien}" />
+                            <input type="date" id="startDate" value="${employee.ngayBatDau}" />
+                            <input type="date" id="endDate" value="${employee.ngayKetThuc}" />
+                        `;
+                            saveBtn.style.display = 'block';
+                        } else {
+                            console.error("Không tìm thấy nhân viên với id:", id);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching schedule data:', error);
+                    });
+    
+                saveBtn.onclick = function () {
+                    console.log ("test"+ id)
+                    // Khi nhấn Lưu, gửi PUT request để cập nhật
+                    const employeeName = document.getElementById('employeeName').value;
+                    const startDate = document.getElementById('startDate').value;
+                    const endDate = document.getElementById('endDate').value;
+    
+                    fetch(`http://localhost:8082/api/lichlamviec/update/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            ngayBatDau: startDate,
+                            ngayKetThuc: endDate,
+                        }),
+                    })
+    
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log("Cập nhật thành công:", data);
+                            closeModal();
+                            fetchScheduleData();  // Cập nhật lại bảng dữ liệu
+                            // Lấy phần tử thông báo
+                            const notification = document.getElementById('notification');
+                            const notificationMessage = document.getElementById('notificationMessage');
+    
+                            // Hiển thị thông báo với nội dung từ server
+                            notificationMessage.textContent = data; // Gán thông báo từ server vào
+                            notification.style.display = 'block'; // Hiển thị thông báo
+    
+                            // Nếu thông báo là lỗi, thay đổi màu sắc thông báo
+                            if (data.includes("Không tìm thấy nhân viên")) {
+                                notification.classList.add('error');
+                            } else {
+                                notification.classList.remove('error');
+                            }
+    
+                            // Ẩn thông báo sau 3 giây
+                            setTimeout(() => {
+                                notification.style.display = 'none';
+                            }, 2000);
+    
+                        })
+                        .catch(error => {
+                            console.error("Lỗi khi cập nhật:", error);
+                        });
+                };
+            } else if (type === 'delete') {
+                modalHeader.textContent = 'Xóa Lịch Làm Việc';
+                modalBody.innerHTML = `<p>Bạn có chắc muốn xóa lịch làm việc này?</p>`;
+                deleteBtn.style.display = 'block';
+    
+                deleteBtn.onclick = function () {
+                    // Khi nhấn Xóa, gửi DELETE request
+                    fetch(`http://localhost:8082/api/lichlamviec/delete/${id}`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log("Xóa thành công:", data);
+                            closeModal();
+                            fetchScheduleData();  // Cập nhật lại bảng dữ liệu
+                            // Lấy phần tử thông báo
+                            const notification = document.getElementById('notification');
+                            const notificationMessage = document.getElementById('notificationMessage');
+    
+                            // Hiển thị thông báo với nội dung từ server
+                            notificationMessage.textContent = data; // Gán thông báo từ server vào
+                            notification.style.display = 'block'; // Hiển thị thông báo
+    
+                            // Nếu thông báo là lỗi, thay đổi màu sắc thông báo
+                            if (data.includes("Không tìm thấy nhân viên")) {
+                                notification.classList.add('error');
+                            } else {
+                                notification.classList.remove('error');
+                            }
+    
+                            // Ẩn thông báo sau 3 giây
+                            setTimeout(() => {
+                                notification.style.display = 'none';
+                            }, 2000);
+                        })
+                        .catch(error => {
+                            console.error("Lỗi khi xóa:", error);
+                        });
+                };
+            }
+        }
+    
+        // Hàm đóng modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+    
+    
+        // Gọi hàm lấy dữ liệu khi trang được tải
+        document.addEventListener('DOMContentLoaded', fetchScheduleData);
+    </script>
+    </body>
+    </html>
+    

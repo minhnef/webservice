@@ -1,16 +1,20 @@
 package com.example.webservice.nhom10.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.webservice.nhom10.dto.DoanhthuDTO;
 import com.example.webservice.nhom10.dto.DonHangDTO;
 import com.example.webservice.nhom10.service.donhangser;
 
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -46,5 +50,14 @@ public class dondathangcontroller {
         String voucher= donHangDTO.getVoucher();
         
         return donhangser.khuyenmai(iddh, voucher);
+    }
+    @GetMapping("/doanhthu")
+    public List<DoanhthuDTO> getTotalRevenue() {
+        return donhangser.calculateTotalRevenue();
+    }
+
+    @GetMapping("/doanhthu/{id}")
+    public DoanhthuDTO getRevenueForOrder(@PathVariable int id) {
+        return donhangser.calculateRevenueForOrder(id);
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.example.webservice.nhom10.entity.taikhoan;
 @Repository
 public interface taikhoanrepo extends JpaRepository<taikhoan, Integer>{
-    @Query(value = "select * from taikhoan where taikhoan like :username", nativeQuery = true)
+    @Query(value = "select * from taikhoan where taikhoan = :username", nativeQuery = true)
     public Optional<taikhoan> findByUsername(@Param("username") String username);
 
 }

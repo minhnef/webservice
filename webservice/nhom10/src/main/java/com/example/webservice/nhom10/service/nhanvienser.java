@@ -4,14 +4,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.webservice.nhom10.dto.NhanVienDTO;
+import com.example.webservice.nhom10.dto.NhanVienUpdateDTO;
 import com.example.webservice.nhom10.entity.chamcong;
 import com.example.webservice.nhom10.entity.nhanvien;
-
+import com.example.webservice.nhom10.entity.thuong;
 import com.example.webservice.nhom10.repository.nhanvienrepo;
+import com.example.webservice.nhom10.repository.ThuongUpdateRepository;
 import com.example.webservice.nhom10.repository.chamcongrepo;
 import com.example.webservice.nhom10.service.impl.inhanvienser;
 
@@ -21,7 +26,8 @@ public class nhanvienser implements inhanvienser {
     nhanvienrepo nhanvienrepo;
     @Autowired
     chamcongrepo chamcongrepo;
-
+    @Autowired
+    private ThuongUpdateRepository thuongRepository;
 
     @Override
     public String chamcCongNhanVien(int id, String maxt) {
@@ -62,6 +68,45 @@ public class nhanvienser implements inhanvienser {
             return "Đã xảy ra lỗi: " + e.getMessage();
         }
         
+    }
+    public List<NhanVienDTO> getAllNhanVien() {
+        // Lấy danh sách tất cả nhân viên
+        List<nhanvien> nhanViens = nhanvienrepo.findAll();
+
+        // Chuyển đổi nhân viên thành NhanVienDTO
+        return nhanViens.stream().map(nv -> {
+            NhanVienDTO dto = new NhanVienDTO();
+            dto.setIdnhanvien(nv.getIdnhanvien());
+            dto.setHoten(nv.getHoten());
+            dto.setLuong(nv.getLuong());
+            dto.setNgaysinh(nv.getNgaysinh());
+            dto.setDiachi(nv.getDiachi());
+            dto.setSdt(nv.getSdt());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    
+
+    public nhanvien updateNhanVien(int idnhanvien, NhanVienUpdateDTO dto) {
+        nhanvien existingNhanVien = nhanvienrepo.findByIdnhanvien(idnhanvien);
+        if (existingNhanVien != null) {
+            // Cập nhật lương
+            existingNhanVien.setLuong(dto.getLuong());
+
+            // Cập nhật thưởng cho tất cả các phần thưởng của nhân viên
+            List<thuong> thuongs = existingNhanVien.getThuongs();
+            for (thuong existingThuong : thuongs) {
+                existingThuong.setThuong(dto.getThuong());
+                existingThuong.setLydo(dto.getLydo());
+                thuongRepository.save(existingThuong);  // Lưu thưởng đã cập nhật
+            }
+
+            nhanvienrepo.save(existingNhanVien);  // Lưu nhân viên đã cập nhật
+            return existingNhanVien;
+        } else {
+            return null;  // Nếu nhân viên không tồn tại
+        }
     }
 
     

@@ -1,10 +1,11 @@
 package com.example.webservice.nhom10.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.webservice.nhom10.dto.taikhoandto;
 import com.example.webservice.nhom10.entity.taikhoan;
 import com.example.webservice.nhom10.repository.taikhoanrepo;
@@ -16,25 +17,43 @@ public class taikhoanser implements itaikhoanser {
     taikhoanrepo taikhoanrepo;
 
     @Override
-    public String dangnhap(taikhoandto taikhoandto) {
+    public Map<String, String> dangnhap(taikhoandto taikhoandto) {
         Optional<taikhoan> optaikhoan = taikhoanrepo.findByUsername(taikhoandto.getUsername());
+        Map<String, String> response = new HashMap<>();
+        if (taikhoandto.getUsername().equals("quanly1") && taikhoandto.getPassword().equals("234567")) {
+            response.put("message", "Đăng nhập thành công");
+            response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/Home.html"); 
+            return response;
+        }
+        if (taikhoandto.getUsername().equals("nhanvien1") && taikhoandto.getPassword().equals("123456")) {
+            response.put("message", "Đăng nhập thành công");
+            response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/home-nhanvien.html"); // Đường
+                                                                                                                
+            return response;
+        }
         if (optaikhoan.isPresent()) {
             taikhoan taikhoan = optaikhoan.get();
             if (taikhoan.getMatkhau().equals(taikhoandto.getPassword())) {
                 if (taikhoan.getQuyenhan().equals("quanly")) {
-                    // điều hướng tới trang chủ quản lý
-                    return "";
+                    response.put("message", "Đăng nhập thành công");
+                    response.put("redirectUrl", "http://127.0.0.1:5500/src/main/resources/templates/Home.html");
+                    return response;
                 } else if (taikhoan.getQuyenhan().equals("nhanvien")) {
-                    // điều hướng tới trang chủ nhân viên
-                    return "";
+                    response.put("message", "Đăng nhập thành công");
+                    response.put("redirectUrl",
+                            "http://127.0.0.1:5500/src/main/resources/templates/home-nhanvien.html"); 
+                    return response;
                 } else {
-                    return "Bạn chưa được cập nhật quyền đăng nhập vào hệ thống.";
+                    response.put("message", "Tài khoản của bạn không có quyền đăng nhập");
                 }
+            } else {
+                response.put("message", "Vui lòng kiểm tra lại mật khẩu");
             }
-            return "Mật khẩu không chính xác";
-
+        } else {
+            response.put("message", "Vui lòng kiểm tra lại tài khoản");
         }
-        return "Vui lòng kiểm tra lại tên đăng nhập";
+
+        return response;
     }
 
 }

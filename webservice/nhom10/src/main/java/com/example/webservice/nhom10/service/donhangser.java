@@ -1,12 +1,13 @@
 package com.example.webservice.nhom10.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.webservice.nhom10.dto.response;
+import com.example.webservice.nhom10.dto.DoanhthuDTO;
 import com.example.webservice.nhom10.entity.ban;
 import com.example.webservice.nhom10.entity.chitietdonhang;
 import com.example.webservice.nhom10.entity.dondathang;
@@ -99,7 +100,7 @@ public class donhangser implements idonhangser {
                         int giaSauVoucher = tonggia - tonggia * giamgia / 100;
                         dondathang.setTonggia(giaSauVoucher);
                         return "Chúc mùng quý khách áp dụng thành công voucher: " + khuyenmai
-                                + "\nĐơn hàng của quý khách còn lại: " + giaSauVoucher + "VND";
+                                + "/nĐơn hàng của quý khách còn lại: " + giaSauVoucher + "VND";
                     }
                 }
 
@@ -111,4 +112,23 @@ public class donhangser implements idonhangser {
         return "Vui lòng kiểm tra lại ID đơn hàng";
     }
 
+     public List<DoanhthuDTO> calculateTotalRevenue() {
+        List<dondathang> allOrders = dondathangrepo.findAll();
+        List<DoanhthuDTO> doanhthuDTOList = new ArrayList<>();
+
+        for (dondathang order : allOrders) {
+            doanhthuDTOList.add(new DoanhthuDTO(order.getIddonhang(), order.getTonggia()));
+        }
+
+        return doanhthuDTOList;
+    }
+
+    public DoanhthuDTO calculateRevenueForOrder(int id) {
+        dondathang order = dondathangrepo.findById(id).orElse(null);
+        if (order != null) {
+            return new DoanhthuDTO(order.getIddonhang(), order.getTonggia());
+        } else {
+            return null;
+        }
+    }
 }

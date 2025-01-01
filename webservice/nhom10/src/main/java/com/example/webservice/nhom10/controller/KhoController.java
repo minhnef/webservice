@@ -2,53 +2,96 @@ package com.example.webservice.nhom10.controller;
 
 import com.example.webservice.nhom10.entity.kho;
 import com.example.webservice.nhom10.repository.KhoRepo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/kho")
 public class KhoController {
+
     @Autowired
     KhoRepo khoRepo;
-    @RequestMapping
+
+    @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("nguyenlieu",khoRepo.findAll());
         List<kho> nguyenlieus = khoRepo.findAll();
 
-        return "nguyenlieu";
+        // // In ra log để kiểm tra dữ liệu
+        // for (kho item : nguyenlieus) {
+        //     System.out.println(item);
+        // }
+
+        model.addAttribute("nguyenlieu", nguyenlieus);
+        return "html/nguyenlieu/nguyenlieu";
     }
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String editPerson(@RequestParam("id") int id, Model model) {
+        //tạo optional để luư đối tượng personEdit
+        Optional<kho> nguyenlieu = khoRepo.findById(id);
+
+        //kiếm tra nếu tồn tại thì thực hiện biểu thức lambda xong return về biến person bằng ifPresent của optional
+        nguyenlieu.ifPresent(nl ->
+                model.addAttribute("nguyenlieu", nl)
+        );
+        nguyenlieu.ifPresent(nl ->
+                System.out.println(nl.getNgaynhap())
+        );
+        //trả ve form editPerson
+
+        return "html/nguyenlieu/edit";
+    }
+    @RequestMapping("/search")
+    public String search(@RequestParam("value") String value,
+                         Model model
+    ) {
+
+        //tạo 1 list chứa các đối tượng person bằng thuộc tính getAll() của class crudRepository kế thừa
+        List<kho> nguyenlieu=khoRepo.search(value);
+
+        //thêm thuộc tính vào đối tượng model với key là persons và value là persons
+        model.addAttribute("nguyenlieu",nguyenlieu);
+//trả về index.html
+        return "html/nguyenlieu/nguyenlieu";
+    }
+
     @RequestMapping(value = "/add")
     public String add(Model model) {
-        //thêm thuộc tính vào đối tượng model với key là persons và value là new Person
+        // Thêm thuộc tính vào đối tượng model với key là "nguyenlieu" và value là new kho()
         model.addAttribute("nguyenlieu", new kho());
-        return "add";
+        return "html/nguyenlieu/add";
     }
-    @RequestMapping(value = "/save" ,method = RequestMethod.POST)
-    public String add(@RequestParam kho kho) {
-        //Lưu person vào personService
-        khoRepo.save(kho);
-        //trả về trang chủ
-        return "nguyenlieu";
-    }
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public String save(@ModelAttribute kho kho) {
-//        //Lưu person vào personService
-//        khoRepo.save(kho);
-//        //trả về trang chủ
-//        return "redirect:/";
+
+//    @RequestMapping(value = "/form", method = RequestMethod.GET)
+//    public String showForm(Model model) {
+//        model.addAttribute("nguyenlieu", new kho());
+//        return "form";
 //    }
-@RequestMapping(value = "delete", method = RequestMethod.GET)
-public String delete(
-        //requestparam lấy id bên form index gán vào personId tạo object model để addAttribute
-        @RequestParam("id") int id, Model model) {
-    //thực hiện phương thức xóa trong personService
-    khoRepo.deleteById(id);
-    //trả về trang chủ khi thực hiên xong
-    return "redirect:/kho";
-}
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute kho request) {
+        // Lưu đối tượng kho vào khoRepo
+
+
+        khoRepo.save(request);
+
+        // Trả về trang chủ
+        return "redirect:/kho";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String delete(
+            @RequestParam("id") int id, Model model) {
+        // Thực hiện phương thức xóa trong khoRepo
+        khoRepo.deleteById(id);
+        // Trả về trang chủ khi thực hiện xong
+        return "redirect:/kho";
+    }
+
+    // Thêm phương thức chỉnh sửa
+
 }
