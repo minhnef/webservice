@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/home-admin.css">
+</head>
+<body>
+    <!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
+    </div>
+    <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
+    </div>
+</div>
+<!-- app home -->
+<div class="app-container" style="display: flex;">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-item ">
+            <i class="fa-solid fa-house navbar-icon"></i>
+            <span class="navbar-text">Trang chủ</span>
+        </div>
+        <script>
+            // Lưu thông tin trang "home-nhanvien.html" vào localStorage
+            localStorage.setItem('fromHome', 'nhanvien');
+          </script>
+          
+        <div class="navbar-item">
+            <i class="fa-solid fa-warehouse navbar-icon"></i>
+            <span class="navbar-text">Kho Nhiên Liệu</span>
+        </div>
+        <div class="navbar-item">
+            <a href="doanhthu.html" class="navbar-link">
+                <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                <span class="navbar-text">Doanh Thu</span>
+            </a>
+        </div>        
+        <div class="navbar-item">
+            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+            <span class="navbar-text">Danh Sách Đặt Bàn</span>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Header Section -->
+        <div class="header">
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../static/images/userss.png" alt="Employees">
+                </div>
+                <h3 id="employee-count">0</h3>
+                <p>Tổng số nhân viên</p>
+            </div>
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../static/images/hoadon.jpg" alt="Invoices">
+                </div>
+                <h3 id="total-orders">0</h3>
+                <p>Tổng số hóa đơn</p>
+            </div>
+            <div class="card">
+                <div class="image-wrapper">
+                    <img src="../static/images/food-icon-design-vector-png_120564.jpg" alt="Dishes">
+                </div>
+                <h3 id="dish-count">0</h3>
+                <p>Tổng số món ăn</p>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <div style="display: flex; flex-direction: column; width: 65%;">
+                <div class="left">
+                    <h3>Doanh thu</h3>
+                    <div class="revenue-row">
+                        <span>Doanh thu tháng này:</span>
+                        <strong id="total-revenue">0 VND</strong>
+                    </div>
+                </div>
+                <div class="restaurant-image">
+                    <img src="../static/images/back.png" alt="Nhà hàng" style="object-fit: cover; height: 250px;">
+                </div>
+            </div>
+            <div class="right">
+                <h3>Món ăn bán chạy</h3>
+                <canvas id="topDishesChart" class="chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/header.js"></script>
+    <script type="module" src="../js/home.js"></script>
+
+</body>
+</html>

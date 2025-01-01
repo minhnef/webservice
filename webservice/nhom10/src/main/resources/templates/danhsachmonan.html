@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách món ăn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/danhsachmonan.css">
+</head>
+<body>
+    <!-- header -->
+<div class="header-bar">
+    <div style="display: flex; width: 300px;">
+        <span>Time: </span>
+        <div class="time" id="currentTime">--:--</div>
+    </div>
+    <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+    <div class="admin-section" style="width: 300px; justify-content: end;">
+        <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+        <button class="logout-btn">Đăng xuất</button>
+    </div>
+</div>
+<!-- app home -->
+<div class="app-container" style="display: flex;">
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="navbar-item">
+            <a href="Home.html" class="navbar-link">
+                <i class="fa-solid fa-house navbar-icon"></i>
+                <span class="navbar-text">Trang chủ</span>
+            </a>
+        </div>
+        <script>
+            // Lưu thông tin trang "home-admin.html" vào localStorage
+            localStorage.setItem('fromHome', 'admin');
+          </script>          
+        <div class="navbar-item">
+            <i class="fa-solid fa-warehouse navbar-icon"></i>
+            <span class="navbar-text">Kho Nhiên Liệu</span>
+        </div>
+        <div class="navbar-item ">
+            <div class="menu-header" id="menuHeader">
+                <i class="fa-solid fa-utensils navbar-icon"></i>
+                <span class="menu-title">Thực đơn</span>
+                <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+            </div>
+        </div>
+        <div class="menu-items" id="menuItems" style="display: none;">
+            <div class="navbar-item">
+                <a href="danhsachmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-list navbar-icon"></i>
+                    <span class="navbar-text">Danh sách món ăn</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="themmonan.html" class="navbar-link">
+                    <i class="fa-solid fa-plus navbar-icon"></i>
+                    <span class="navbar-text">Thêm món ăn</span>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="doanhthu.html" class="navbar-link">
+                <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                <span class="navbar-text">Doanh Thu</span>
+            </a>
+        </div>
+        <div class="navbar-item">
+            <a href="lichlamviec.html" class="navbar-link">
+                <i class="fa-solid fa-user-check navbar-icon"></i>
+                <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+            </a>
+        </div>
+        <div class="navbar-item">
+            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+            <span class="navbar-text">Danh Sách Đặt Bàn</span>
+        </div>
+        <div class="navbar-item">
+            <a href="luongthuong.html" class="navbar-link">
+                <i class="fa-solid fa-money-bill navbar-icon"></i>
+                <span class="navbar-text">Lương thưởng</span>
+            </a>
+        </div>
+    </div>
+    <script src="../js/header.js"></script>
+    <script>
+        document.getElementById('menuHeader').addEventListener('click', function () {
+            const menuItems = document.getElementById('menuItems');
+            const menuToggle = document.getElementById('menuToggle');
+
+            if (menuItems.style.display === 'none') {
+                menuItems.style.display = 'block';
+                menuToggle.classList.remove('fa-chevron-right');
+                menuToggle.classList.add('fa-chevron-down');
+            } else {
+                menuItems.style.display = 'none';
+                menuToggle.classList.remove('fa-chevron-down');
+                menuToggle.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
+    <body>
+        <div class="container">
+            <h2>Danh Sách Món Ăn</h2>
+            <table id="danhSachMonAnTable">
+                <thead>
+                    <tr>
+                        <th>Tên món</th>
+                        <th>Mô tả</th>
+                        <th>Giá tiền</th>
+                        <th>Loại món</th>
+                        <th>Hành động</th> <!-- Thêm cột hành động -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Các món ăn sẽ được thêm ở đây -->
+                </tbody>
+            </table>
+            
+            <script>
+                // Lấy danh sách món ăn từ localStorage
+                const danhSachMonAn = JSON.parse(localStorage.getItem("danhSachMonAn")) || [];
+            
+                // Lấy tbody của bảng
+                const tableBody = document.getElementById("danhSachMonAnTable").querySelector("tbody");
+            
+                // Hàm hiển thị danh sách món ăn
+                function hienThiDanhSach() {
+                    tableBody.innerHTML = ""; // Xóa nội dung cũ
+            
+                    if (danhSachMonAn.length === 0) {
+                        const row = document.createElement("tr");
+                        const cell = document.createElement("td");
+                        cell.colSpan = 5;
+                        cell.textContent = "Không có món ăn nào.";
+                        cell.style.textAlign = "center";
+                        row.appendChild(cell);
+                        tableBody.appendChild(row);
+                    } else {
+                        danhSachMonAn.forEach((monAn, index) => {
+                            const row = document.createElement("tr");
+            
+                            // Tạo các ô cho từng thuộc tính
+                            const tenMonCell = document.createElement("td");
+                            tenMonCell.textContent = monAn.tenMon;
+                            row.appendChild(tenMonCell);
+            
+                            const moTaCell = document.createElement("td");
+                            moTaCell.textContent = monAn.moTa;
+                            row.appendChild(moTaCell);
+            
+                            const giaTienCell = document.createElement("td");
+                            giaTienCell.textContent = monAn.giaTien;
+                            row.appendChild(giaTienCell);
+            
+                            const loaiMonCell = document.createElement("td");
+                            loaiMonCell.textContent = monAn.loaiMonAn;
+                            row.appendChild(loaiMonCell);
+            
+                            // Tạo cột hành động
+                            const actionCell = document.createElement("td");
+            
+                            // Nút Sửa
+                            const editButton = document.createElement("button");
+                            editButton.textContent = "Sửa";
+                            editButton.style.marginRight = "10px";
+                            editButton.onclick = () => suaMonAn(index); // Gọi hàm sửa
+                            actionCell.appendChild(editButton);
+            
+                            // Nút Xóa
+                            const deleteButton = document.createElement("button");
+                            deleteButton.textContent = "Xóa";
+                            deleteButton.onclick = () => xoaMonAn(index); // Gọi hàm xóa
+                            actionCell.appendChild(deleteButton);
+            
+                            row.appendChild(actionCell);
+            
+                            // Thêm dòng vào bảng
+                            tableBody.appendChild(row);
+                        });
+                    }
+                }
+            
+                // Hàm sửa món ăn
+                function suaMonAn(index) {
+                    const monAn = danhSachMonAn[index];
+                    const tenMon = prompt("Nhập tên món mới:", monAn.tenMon);
+                    const moTa = prompt("Nhập mô tả mới:", monAn.moTa);
+                    const giaTien = prompt("Nhập giá tiền mới:", monAn.giaTien);
+                    const loaiMonAn = prompt(
+                        "Nhập loại món mới (khai_vi, mon_chay, mon_man, trang_mieng, do_uong, khac):",
+                        monAn.loaiMonAn
+                    );
+            
+                    if (tenMon && moTa && giaTien && loaiMonAn) {
+                        danhSachMonAn[index] = { tenMon, moTa, giaTien, loaiMonAn };
+                        localStorage.setItem("danhSachMonAn", JSON.stringify(danhSachMonAn));
+                        hienThiDanhSach(); // Cập nhật hiển thị
+                    }
+                }
+            
+                // Hàm xóa món ăn
+                function xoaMonAn(index) {
+                    if (confirm("Bạn có chắc chắn muốn xóa món ăn này?")) {
+                        danhSachMonAn.splice(index, 1); // Xóa món ăn
+                        localStorage.setItem("danhSachMonAn", JSON.stringify(danhSachMonAn));
+                        hienThiDanhSach(); // Cập nhật hiển thị
+                    }
+                }
+            
+                // Hiển thị danh sách món ăn khi trang được tải
+                hienThiDanhSach();
+            </script>
+    </body>

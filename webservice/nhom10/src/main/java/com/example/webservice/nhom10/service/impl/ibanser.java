@@ -2,7 +2,6 @@ package com.example.webservice.nhom10.service.impl;
 
 import java.util.List;
 
-import com.example.webservice.nhom10.dto.response;
 import com.example.webservice.nhom10.entity.ban;
 
 public interface ibanser {

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm món ăn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/themmonan.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header-bar">
+        <div style="display: flex; width: 300px;">
+            <span>Time: </span>
+            <div class="time" id="currentTime">--:--</div>
+        </div>
+        <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+        <div class="admin-section" style="width: 300px; justify-content: end;">
+            <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+            <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+            <button class="logout-btn">Đăng xuất</button>
+        </div>
+    </div>
+    <!-- app home -->
+    <div class="app-container" style="display: flex;">
+        <!-- navbar -->
+        <div class="navbar">
+            <div class="navbar-item">
+                <a href="Home.html" class="navbar-link">
+                    <i class="fa-solid fa-house navbar-icon"></i>
+                    <span class="navbar-text">Trang chủ</span>
+                </a>
+            </div>
+            <script>
+                // Lưu thông tin trang "home-admin.html" vào localStorage
+                localStorage.setItem('fromHome', 'admin');
+            </script>
+            <div class="navbar-item">
+                <i class="fa-solid fa-warehouse navbar-icon"></i>
+                <span class="navbar-text">Kho Nhiên Liệu</span>
+            </div>
+            <div class="navbar-item ">
+                <div class="menu-header" id="menuHeader">
+                    <i class="fa-solid fa-utensils navbar-icon"></i>
+                    <span class="menu-title">Thực đơn</span>
+                    <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+                </div>
+            </div>
+            <div class="menu-items" id="menuItems" style="display: none;">
+                <div class="navbar-item">
+                    <a href="danhsachmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-list navbar-icon"></i>
+                        <span class="navbar-text">Danh sách món ăn</span>
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="themmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-plus navbar-icon"></i>
+                        <span class="navbar-text">Thêm món ăn</span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="doanhthu.html" class="navbar-link">
+                    <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                    <span class="navbar-text">Doanh Thu</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="lichlamviec.html" class="navbar-link">
+                    <i class="fa-solid fa-user-check navbar-icon"></i>
+                    <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+                <span class="navbar-text">Danh Sách Đặt Bàn</span>
+            </div>
+            <div class="navbar-item">
+                <a href="luongthuong.html" class="navbar-link">
+                    <i class="fa-solid fa-money-bill navbar-icon"></i>
+                    <span class="navbar-text">Lương thưởng</span>
+                </a>
+            </div>
+        </div>
+        <script src="../js/header.js"></script>
+        <script>
+            document.getElementById('menuHeader').addEventListener('click', function () {
+                const menuItems = document.getElementById('menuItems');
+                const menuToggle = document.getElementById('menuToggle');
+
+                if (menuItems.style.display === 'none') {
+                    menuItems.style.display = 'block';
+                    menuToggle.classList.remove('fa-chevron-right');
+                    menuToggle.classList.add('fa-chevron-down');
+                } else {
+                    menuItems.style.display = 'none';
+                    menuToggle.classList.remove('fa-chevron-down');
+                    menuToggle.classList.add('fa-chevron-right');
+                }
+            });
+        </script>
+
+        <body>
+            <div class="container">
+                <h2>Thêm Món Ăn</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="tenmon">Tên món</label>
+                        <input type="text" id="tenmon" name="tenmon" placeholder="Nhập tên món ăn">
+                    </div>
+                    <div class="form-group">
+                        <label for="mota">Mô tả</label>
+                        <textarea id="mota" name="mota" placeholder="Nhập mô tả"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="giatien">Giá tiền</label>
+                        <input type="number" id="giatien" name="giatien" placeholder="Nhập giá tiền">
+                    </div>
+                    <div class="form-group">
+                        <label for="loaimonan">Chọn loại món ăn</label>
+                        <select id="loaimonan" name="loaimonan">
+                            <option value="">--Chọn loại món ăn--</option>
+                            <option value="khai_vi">Món khai vị</option>
+                            <option value="mon_chay">Món chay</option>
+                            <option value="mon_man">Món mặn</option>
+                            <option value="trang_mieng">Món tráng miệng</option>
+                            <option value="do_uong">Đồ uống</option>
+                            <option value="khac">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hinhanh">Hình ảnh</label>
+                        <input type="file" id="hinhanh" name="hinhanh">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="save">Save</button>
+                        <button type="button" class="cancel"
+                            onclick="window.location.href='danhsachmonan.html'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                document.getElementById("themMonAnForm").addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    // Lấy dữ liệu từ form
+                    const tenMon = document.getElementById("tenmon").value;
+                    const moTa = document.getElementById("mota").value;
+                    const giaTien = document.getElementById("giatien").value;
+                    const loaiMonAn = document.getElementById("loaimonan").value;
+
+                    // Lấy danh sách món ăn từ localStorage
+                    let danhSachMonAn = JSON.parse(localStorage.getItem("danhSachMonAn")) || [];
+
+                    // Thêm món ăn mới
+                    const monAnMoi = {
+                        tenMon,
+                        moTa,
+                        giaTien,
+                        loaiMonAn,
+                    };
+                    danhSachMonAn.push(monAnMoi);
+
+                    // Lưu lại vào localStorage
+                    localStorage.setItem("danhSachMonAn", JSON.stringify(danhSachMonAn));
+
+                    // Chuyển đến trang danh sách món ăn
+                    window.location.href = "danhsachmonan.html";
+                });
+
+            </script>
+        </body>

@@ -16,9 +16,6 @@ import java.io.IOException;
 public class qrcodeser implements iqrcodeser{
     
 
-    private static final int width = 300;
-    private static final int height = 300;
-
     @Autowired
     nhanvienrepo nhanvienrepo;
     @Autowired

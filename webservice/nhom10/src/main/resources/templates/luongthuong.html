@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lương thưởng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../static/css/luongthuong.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header-bar">
+        <div style="display: flex; width: 300px;">
+            <span>Time: </span>
+            <div class="time" id="currentTime">--:--</div>
+        </div>
+        <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+        <div class="admin-section" style="width: 300px; justify-content: end;">
+            <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+            <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+            <button class="logout-btn">Đăng xuất</button>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <!-- navbar -->
+        <div class="navbar">
+            <div class="navbar-item" id="homeButton">
+                <i class="fa-solid fa-house navbar-icon"></i>
+                <span class="navbar-text">Trang chủ</span>
+            </div>
+
+            <script>
+                document.getElementById('homeButton').addEventListener('click', function () {
+                    // Lấy thông tin trang Home đã lưu từ localStorage
+                    const homePage = localStorage.getItem('fromHome');
+
+                    console.log(homePage); // Kiểm tra thông tin lưu trữ trong localStorage
+
+                    if (homePage === 'nhanvien') {
+                        window.location.href = 'home-nhanvien.html';  // Quay lại trang Home của nhân viên
+                    } else if (homePage === 'admin') {
+                        window.location.href = 'Home.html';  // Quay lại trang Home của admin
+                    } else {
+                        window.location.href = 'home-nhanvien.html';  // Mặc định quay về Home của nhân viên nếu không có giá trị trong localStorage
+                    }
+                });
+            </script>
+            <div class="navbar-item">
+                <i class="fa-solid fa-warehouse navbar-icon"></i>
+                <span class="navbar-text">Kho Nhiên Liệu</span>
+            </div>
+            <div class="navbar-item ">
+                <div class="menu-header" id="menuHeader">
+                    <i class="fa-solid fa-utensils navbar-icon"></i>
+                    <span class="menu-title">Thực đơn</span>
+                    <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+                </div>
+            </div>
+            <div class="menu-items" id="menuItems" style="display: none;">
+                <div class="navbar-item">
+                    <a href="danhsachmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-list navbar-icon"></i>
+                        <span class="navbar-text">Danh sách món ăn</span>
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="themmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-plus navbar-icon"></i>
+                        <span class="navbar-text">Thêm món ăn</span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="doanhthu.html" class="navbar-link">
+                    <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                    <span class="navbar-text">Doanh Thu</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="lichlamviec.html" class="navbar-link">
+                    <i class="fa-solid fa-user-check navbar-icon"></i>
+                    <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+                <span class="navbar-text">Danh Sách Đặt Bàn</span>
+            </div>
+            <div class="navbar-item">
+                <a href="luongthuong.html" class="navbar-link">
+                    <i class="fa-solid fa-money-bill navbar-icon"></i>
+                    <span class="navbar-text">Lương thưởng</span>
+                </a>
+            </div>
+        </div>
+        <script src="../js/header.js"></script>
+        <script>
+            document.getElementById('menuHeader').addEventListener('click', function () {
+                const menuItems = document.getElementById('menuItems');
+                const menuToggle = document.getElementById('menuToggle');
+
+                if (menuItems.style.display === 'none') {
+                    menuItems.style.display = 'block';
+                    menuToggle.classList.remove('fa-chevron-right');
+                    menuToggle.classList.add('fa-chevron-down');
+                } else {
+                    menuItems.style.display = 'none';
+                    menuToggle.classList.remove('fa-chevron-down');
+                    menuToggle.classList.add('fa-chevron-right');
+                }
+            });
+        </script>
+        <div class="main">
+            <h1>Employee Salary and Rewards</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Tên Nhân Viên</th>
+                        <th>Lương</th>
+                        <th>Thưởng</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTable">
+                    <!-- Dynamic rows will appear here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+    <!-- Modal for Edit -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header">Chỉnh Sửa Nhân Viên</div>
+            <div class="modal-body" id="modal-body">
+                <!-- Nội dung modal -->
+            </div>
+            <div class="modal-footer" style="display: flex;">
+                <button class="btn close-btn" onclick="closeModal()">Hủy</button>
+                <button class="btn save-btn" style="display: none;" id="save-btn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let employees = [];
+        let rewards = [];
+        let currentEmployeeId = null;
+
+        function fetchEmployees() {
+            fetch('http://localhost:8083/nhanvien/all')
+                .then(response => response.json())
+                .then(data => {
+                    employees = data;
+                    fetchRewards(); // Sau khi lấy nhân viên, gọi lấy thưởng
+                })
+                .catch(error => console.error('Error fetching employee data:', error));
+        }
+
+        function fetchRewards() {
+            fetch('http://localhost:8083/thuong')  // API thưởng
+                .then(response => response.json())
+                .then(data => {
+                    rewards = data;
+                    // Duyệt qua thưởng và gán cho nhân viên
+                    employees.forEach(employee => {
+                        const reward = rewards.find(r => r.idnhanvien === employee.idnhanvien);
+                        if (reward) {
+                            employee.reward = `${reward.thuong} VND (${reward.lydo})`; // Thêm thông tin thưởng vào nhân viên
+                        }
+                    });
+                    renderTable(); // Render lại bảng với thông tin thưởng
+                })
+                .catch(error => console.error('Error fetching reward data:', error));
+        }
+
+        function renderTable() {
+            const table = document.getElementById('employeeTable');
+            table.innerHTML = '';  // Xóa nội dung cũ
+
+            employees.forEach((employee) => {
+                table.innerHTML += `
+        <tr>
+            <td>${employee.idnhanvien}</td>
+            <td>${employee.hoten}</td>
+            <td>${employee.luong + " VND" || ''}</td>
+            <td>${employee.reward || ''}</td>
+            <td>
+                <button class="edit" onclick="openModal('edit', ${employee.idnhanvien})">Chỉnh Sửa</button>
+            </td>
+        </tr>
+    `;
+            });
+        }
+
+        function openModal(action, id) {
+            currentEmployeeId = id;
+            const employee = employees.find(emp => emp.idnhanvien === id);
+
+            if (action === 'edit') {
+                document.getElementById('modal-header').innerText = 'Chỉnh Sửa Nhân Viên';
+                document.getElementById('modal-body').innerHTML = `
+            <input type="text" id="editName" value="${employee.hoten}" placeholder="Tên Nhân Viên" disabled> <!-- Tên không thể chỉnh sửa -->
+            <input type="number" id="editSalary" value="${employee.luong}" placeholder="Lương">
+            <input type="number" id="editRewardAmount" value="${employee.reward.split(' ')[0] || ''}" placeholder="Tiền Thưởng">
+            <input type="text" id="editRewardReason" value="${employee.reward.split('(')[1]?.split(')')[0] || ''}" placeholder="Lý Do Thưởng">
+        `;
+                document.getElementById('save-btn').style.display = 'block';
+                document.getElementById('save-btn').onclick = saveChanges;
+            }
+
+            document.getElementById('modalOverlay').style.display = 'block';
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('modal-body').innerHTML = '';
+        }
+
+        function saveChanges() {
+            const salary = document.getElementById('editSalary').value;
+            const rewardAmount = document.getElementById('editRewardAmount').value;
+            const rewardReason = document.getElementById('editRewardReason').value;
+
+            if (salary && rewardAmount && rewardReason) {
+                const employee = employees.find(emp => emp.idnhanvien === currentEmployeeId);
+
+                // Cập nhật thông tin trong bảng
+                employee.luong = salary;
+                employee.reward = `${rewardAmount} (${rewardReason})`; // Cập nhật thưởng và lý do
+
+                // Gửi dữ liệu lên API nhân viên, bao gồm cả lương và thưởng
+                fetch(`http://localhost:8083/nhanvien/update/${currentEmployeeId}`, {
+                    method: 'PUT', // Sử dụng PUT để thay đổi toàn bộ thông tin
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        luong: salary, // Chỉ gửi lương
+                        thuong: rewardAmount, // Tiền thưởng
+                        lydo: rewardReason, // Lý do thưởng
+                    }),
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log('Employee updated:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error updating employee data:', error);
+                    });
+
+                renderTable(); // Cập nhật lại bảng nhân viên
+                closeModal(); // Đóng modal
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+
+
+        // Fetch employee data and rewards when the page loads
+        fetchEmployees();
+
+    </script>
+</body>
+
+</html>

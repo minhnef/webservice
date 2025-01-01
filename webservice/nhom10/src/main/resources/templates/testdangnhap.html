@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Đăng Nhập</h1>
-        <form id="loginForm" onsubmit="return dangnhap(event);"> <!-- Thêm event vào dangnhap -->
+        
             <div class="input-group">
                 <label for="username">Tên đăng nhập:</label>
                 <input type="text" id="username" name="username" required>
@@ -19,9 +19,9 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="actions">
-                <button type="submit" class="btn login">Đăng nhập</button>
+                <button type="submit" class="btn login" onclick="dangnhap()">Đăng nhập</button>
             </div>
-        </form>
+        
     </div>
     <script src="../static/js/dangnhap.js"></script>
 </body>
