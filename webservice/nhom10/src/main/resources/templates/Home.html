@@ -1,157 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/header.css">
     <link rel="stylesheet" href="../static/css/home-admin.css">
 </head>
+
 <body>
     <!-- header -->
-<div class="header-bar">
-    <div style="display: flex; width: 300px;">
-        <span>Time: </span>
-        <div class="time" id="currentTime">--:--</div>
-    </div>
-    <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
-    <div class="admin-section" style="width: 300px; justify-content: end;">
-        <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
-        <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
-        <button class="logout-btn">Đăng xuất</button>
-    </div>
-</div>
-<!-- app home -->
-<div class="app-container" style="display: flex;">
-    <!-- navbar -->
-    <div class="navbar">
-        <div class="navbar-item ">
-            <i class="fa-solid fa-house navbar-icon"></i>
-            <span class="navbar-text">Trang chủ</span>
+    <div class="header-bar">
+        <div style="display: flex; width: 300px;">
+            <span>Time: </span>
+            <div class="time" id="currentTime">--:--</div>
         </div>
+        <div class="title"><img class="logo-main" src="../static/images/Logo2.jpg" alt=""></div>
+        <div class="admin-section" style="width: 300px; justify-content: end;">
+            <img src="../static/images/User_icon_2.svg.png" alt="Admin Avatar">
+            <span class="admin-name" style="padding-right: 20px;">Admin Name</span>
+            <button class="logout-btn">Đăng xuất</button>
+        </div>
+    </div>
+    <!-- app home -->
+    <div class="app-container" style="display: flex;">
+        <!-- navbar -->
+        <div class="navbar">
+            <div class="navbar-item ">
+                <i class="fa-solid fa-house navbar-icon"></i>
+                <span class="navbar-text">Trang chủ</span>
+            </div>
+            <script>
+                // Lưu thông tin trang "home-admin.html" vào localStorage
+                localStorage.setItem('fromHome', 'admin');
+            </script>
+            <div class="navbar-item">
+                <a href="../templates/html/nguyenlieu/nguyenlieu.html" class="navbar-link">
+                    <i class="fa-solid fa-warehouse navbar-icon"></i>
+                    <span class="navbar-text">Kho Nhiên Liệu</span>
+                </a>
+            </div>
+            <div class="navbar-item ">
+                <div class="menu-header" id="menuHeader">
+                    <i class="fa-solid fa-utensils navbar-icon"></i>
+                    <span class="menu-title">Thực đơn</span>
+                    <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
+                </div>
+            </div>
+            <div class="menu-items" id="menuItems" style="display: none;">
+                <div class="navbar-item">
+                    <a href="../templates/html/monan/monan.html" class="navbar-link">
+                        <i class="fa-solid fa-list navbar-icon"></i>
+                        <span class="navbar-text">Danh sách món ăn</span>
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a href="../templates/html/monan/addmonan.html" class="navbar-link">
+                        <i class="fa-solid fa-plus navbar-icon"></i>
+                        <span class="navbar-text">Thêm món ăn</span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="doanhthu.html" class="navbar-link">
+                    <i class="fa-solid fa-chart-simple navbar-icon"></i>
+                    <span class="navbar-text">Doanh Thu</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <a href="lichlamviec.html" class="navbar-link">
+                    <i class="fa-solid fa-user-check navbar-icon"></i>
+                    <span class="navbar-text">Quản lý lịch làm nhân viên</span>
+                </a>
+            </div>
+            <div class="navbar-item">
+                <i class="fa-solid fa-clipboard-list navbar-icon"></i>
+                <span class="navbar-text">Danh Sách Đặt Bàn</span>
+            </div>
+            <div class="navbar-item">
+                <a href="luongthuong.html" class="navbar-link">
+                    <i class="fa-solid fa-money-bill navbar-icon"></i>
+                    <span class="navbar-text">Lương thưởng</span>
+                </a>
+            </div>
+        </div>
+        <script src="../js/header.js"></script>
         <script>
-            // Lưu thông tin trang "home-admin.html" vào localStorage
-            localStorage.setItem('fromHome', 'admin');
-          </script>          
-        <div class="navbar-item">
-            <i class="fa-solid fa-warehouse navbar-icon"></i>
-            <span class="navbar-text">Kho Nhiên Liệu</span>
-        </div>
-        <div class="navbar-item ">
-            <div class="menu-header" id="menuHeader">
-                <i class="fa-solid fa-utensils navbar-icon"></i>
-                <span class="menu-title">Thực đơn</span>
-                <i class="fa-solid fa-chevron-right menu-toggle" id="menuToggle"></i>
-            </div>
-        </div>
-        <div class="menu-items" id="menuItems" style="display: none;">
-            <div class="navbar-item">
-                <a href="danhsachmonan.html" class="navbar-link">
-                    <i class="fa-solid fa-list navbar-icon"></i>
-                    <span class="navbar-text">Danh sách món ăn</span>
-                </a>
-            </div>
-            <div class="navbar-item">
-                <a href="themmonan.html" class="navbar-link">
-                    <i class="fa-solid fa-plus navbar-icon"></i>
-                    <span class="navbar-text">Thêm món ăn</span>
-                </a>
-            </div>
-        </div>
-        <div class="navbar-item">
-            <a href="doanhthu.html" class="navbar-link">
-                <i class="fa-solid fa-chart-simple navbar-icon"></i>
-                <span class="navbar-text">Doanh Thu</span>
-            </a>
-        </div>
-        <div class="navbar-item">
-            <a href="lichlamviec.html" class="navbar-link">
-                <i class="fa-solid fa-user-check navbar-icon"></i>
-                <span class="navbar-text">Quản lý lịch làm nhân viên</span>
-            </a>
-        </div>
-        <div class="navbar-item">
-            <i class="fa-solid fa-clipboard-list navbar-icon"></i>
-            <span class="navbar-text">Danh Sách Đặt Bàn</span>
-        </div>
-        <div class="navbar-item">
-            <a href="luongthuong.html" class="navbar-link">
-                <i class="fa-solid fa-money-bill navbar-icon"></i>
-                <span class="navbar-text">Lương thưởng</span>
-            </a>
-        </div>
-    </div>
-    <script src="../js/header.js"></script>
-    <script>
-        document.getElementById('menuHeader').addEventListener('click', function () {
-            const menuItems = document.getElementById('menuItems');
-            const menuToggle = document.getElementById('menuToggle');
+            document.getElementById('menuHeader').addEventListener('click', function () {
+                const menuItems = document.getElementById('menuItems');
+                const menuToggle = document.getElementById('menuToggle');
 
-            if (menuItems.style.display === 'none') {
-                menuItems.style.display = 'block';
-                menuToggle.classList.remove('fa-chevron-right');
-                menuToggle.classList.add('fa-chevron-down');
-            } else {
-                menuItems.style.display = 'none';
-                menuToggle.classList.remove('fa-chevron-down');
-                menuToggle.classList.add('fa-chevron-right');
-            }
-        });
-    </script>
-    <div class="container">
+                if (menuItems.style.display === 'none') {
+                    menuItems.style.display = 'block';
+                    menuToggle.classList.remove('fa-chevron-right');
+                    menuToggle.classList.add('fa-chevron-down');
+                } else {
+                    menuItems.style.display = 'none';
+                    menuToggle.classList.remove('fa-chevron-down');
+                    menuToggle.classList.add('fa-chevron-right');
+                }
+            });
+        </script>
+        <div class="container">
 
-        <!-- Header Section -->
-        <div class="header">
-            <div class="card">
-                <div class="image-wrapper">
-                    <img src="../static/images/userss.png" alt="Employees">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="card">
+                    <div class="image-wrapper">
+                        <img src="../static/images/userss.png" alt="Employees">
+                    </div>
+                    <h3 id="employee-count">0</h3>
+                    <p>Tổng số nhân viên</p>
                 </div>
-                <h3 id="employee-count">0</h3>
-                <p>Tổng số nhân viên</p>
-            </div>
-            <div class="card">
-                <div class="image-wrapper">
-                    <img src="../static/images/hoadon.jpg" alt="Invoices">
+                <div class="card">
+                    <div class="image-wrapper">
+                        <img src="../static/images/hoadon.jpg" alt="Invoices">
+                    </div>
+                    <h3 id="total-orders">0</h3>
+                    <p>Tổng số hóa đơn</p>
                 </div>
-                <h3 id="total-orders">0</h3>
-                <p>Tổng số hóa đơn</p>
-            </div>
-            <div class="card">
-                <div class="image-wrapper">
-                    <img src="../static/images/food-icon-design-vector-png_120564.jpg" alt="Dishes">
+                <div class="card">
+                    <div class="image-wrapper">
+                        <img src="../static/images/food-icon-design-vector-png_120564.jpg" alt="Dishes">
+                    </div>
+                    <h3 id="dish-count">0</h3>
+                    <p>Tổng số món ăn</p>
                 </div>
-                <h3 id="dish-count">0</h3>
-                <p>Tổng số món ăn</p>
             </div>
-        </div>
 
-        <!-- Content Section -->
-        <div class="content">
-            <div style="display: flex; flex-direction: column; width: 65%;">
-                <div class="left">
-                    <h3>Doanh thu</h3>
-                    <div class="revenue-row">
-                        <span>Doanh thu tháng này:</span>
-                        <strong id="total-revenue">0 VND</strong>
+            <!-- Content Section -->
+            <div class="content">
+                <div style="display: flex; flex-direction: column; width: 65%;">
+                    <div class="left">
+                        <h3>Doanh thu</h3>
+                        <div class="revenue-row">
+                            <span>Doanh thu tháng này:</span>
+                            <strong id="total-revenue">0 VND</strong>
+                        </div>
+                    </div>
+                    <div class="restaurant-image">
+                        <img src="../static/images/back.png" alt="Nhà hàng" style="object-fit: cover; height: 250px;">
                     </div>
                 </div>
-                <div class="restaurant-image">
-                    <img src="../static/images/back.png" alt="Nhà hàng" style="object-fit: cover; height: 250px;">
+                <div class="right">
+                    <h3>Món ăn bán chạy</h3>
+                    <canvas id="topDishesChart" class="chart"></canvas>
                 </div>
-            </div>
-            <div class="right">
-                <h3>Món ăn bán chạy</h3>
-                <canvas id="topDishesChart" class="chart"></canvas>
             </div>
         </div>
     </div>
-</div>
 
 
-<!-- Chart.js Library -->
-<!--    <script src="../js/apilogin.js"></script>-->
+    <!-- Chart.js Library -->
+    <!--    <script src="../js/apilogin.js"></script>-->
     <!-- CDN for Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -159,77 +165,78 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <script type="module" src="../js/header.js"></script>
-<!--    <script type="module" src="../js/tongnhanvienmaini.js"></script>-->
-<!--    <script type="module" src="../js/tongmonan.js"></script>-->
-<!--    <script type="module" src="../js/doanhthuvahoadon.js"></script>-->
+    <!--    <script type="module" src="../js/tongnhanvienmaini.js"></script>-->
+    <!--    <script type="module" src="../js/tongmonan.js"></script>-->
+    <!--    <script type="module" src="../js/doanhthuvahoadon.js"></script>-->
     <script type="module" src="../js/home.js"></script>
 
-<!--    <script>-->
-<!--        // Gọi login() nếu chưa có token trong localStorage-->
-<!--        window.onload = async () => {-->
-<!--            const token = localStorage.getItem('authToken');-->
-<!--            if (!token) {-->
-<!--                try {-->
-<!--                    await login(); // Gọi hàm đăng nhập để lấy token-->
-<!--                    fetchEmployeeCount(); // Sau khi login, lấy số nhân viên-->
-<!--                } catch (error) {-->
-<!--                    console.error(error);-->
-<!--                    document.getElementById('employee-count').textContent = 'Lỗi đăng nhập';-->
-<!--                }-->
-<!--            } else {-->
-<!--                fetchEmployeeCount(); // Nếu đã có token, lấy số nhân viên-->
-<!--            }-->
-<!--        };-->
-<!--    </script>-->
-<!--<script>-->
-<!--    // Function to fetch data from backend-->
-<!--    async function fetchTopDishes() {-->
-<!--        try {-->
-<!--            const response = await fetch('http://localhost:5000/api/top-dishes'); // Thay URL bằng endpoint backend của bạn-->
-<!--            if (!response.ok) throw new Error('Failed to fetch data');-->
-<!--            const data = await response.json();-->
-<!--            return data;-->
-<!--        } catch (error) {-->
-<!--            console.error(error);-->
-<!--            // Trả về dữ liệu mặc định khi lỗi-->
-<!--            return {-->
-<!--                labels: ['Món A', 'Món B', 'Món C', 'Món D', 'Món E'],-->
-<!--                datasets: [{-->
-<!--                    label: 'Top 5 Món Bán Chạy',-->
-<!--                    data: [30, 25, 20, 15, 10],-->
-<!--                    backgroundColor: [-->
-<!--                        '#FF6384',-->
-<!--                        '#36A2EB',-->
-<!--                        '#FFCE56',-->
-<!--                        '#4BC0C0',-->
-<!--                        '#9966FF'-->
-<!--                    ]-->
-<!--                }]-->
-<!--            };-->
-<!--        }-->
-<!--    }-->
+    <!--    <script>-->
+    <!--        // Gọi login() nếu chưa có token trong localStorage-->
+    <!--        window.onload = async () => {-->
+    <!--            const token = localStorage.getItem('authToken');-->
+    <!--            if (!token) {-->
+    <!--                try {-->
+    <!--                    await login(); // Gọi hàm đăng nhập để lấy token-->
+    <!--                    fetchEmployeeCount(); // Sau khi login, lấy số nhân viên-->
+    <!--                } catch (error) {-->
+    <!--                    console.error(error);-->
+    <!--                    document.getElementById('employee-count').textContent = 'Lỗi đăng nhập';-->
+    <!--                }-->
+    <!--            } else {-->
+    <!--                fetchEmployeeCount(); // Nếu đã có token, lấy số nhân viên-->
+    <!--            }-->
+    <!--        };-->
+    <!--    </script>-->
+    <!--<script>-->
+    <!--    // Function to fetch data from backend-->
+    <!--    async function fetchTopDishes() {-->
+    <!--        try {-->
+    <!--            const response = await fetch('http://localhost:5000/api/top-dishes'); // Thay URL bằng endpoint backend của bạn-->
+    <!--            if (!response.ok) throw new Error('Failed to fetch data');-->
+    <!--            const data = await response.json();-->
+    <!--            return data;-->
+    <!--        } catch (error) {-->
+    <!--            console.error(error);-->
+    <!--            // Trả về dữ liệu mặc định khi lỗi-->
+    <!--            return {-->
+    <!--                labels: ['Món A', 'Món B', 'Món C', 'Món D', 'Món E'],-->
+    <!--                datasets: [{-->
+    <!--                    label: 'Top 5 Món Bán Chạy',-->
+    <!--                    data: [30, 25, 20, 15, 10],-->
+    <!--                    backgroundColor: [-->
+    <!--                        '#FF6384',-->
+    <!--                        '#36A2EB',-->
+    <!--                        '#FFCE56',-->
+    <!--                        '#4BC0C0',-->
+    <!--                        '#9966FF'-->
+    <!--                    ]-->
+    <!--                }]-->
+    <!--            };-->
+    <!--        }-->
+    <!--    }-->
 
-<!--    // Hàm render biểu đồ-->
-<!--    async function renderTopDishesChart() {-->
-<!--        const ctx = document.getElementById('topDishesChart').getContext('2d');-->
-<!--        const chartData = await fetchTopDishes();-->
-<!--        new Chart(ctx, {-->
-<!--            type: 'pie',-->
-<!--            data: chartData,-->
-<!--            options: {-->
-<!--                responsive: true,-->
-<!--                plugins: {-->
-<!--                    legend: {-->
-<!--                        position: 'bottom',-->
-<!--                    }-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
+    <!--    // Hàm render biểu đồ-->
+    <!--    async function renderTopDishesChart() {-->
+    <!--        const ctx = document.getElementById('topDishesChart').getContext('2d');-->
+    <!--        const chartData = await fetchTopDishes();-->
+    <!--        new Chart(ctx, {-->
+    <!--            type: 'pie',-->
+    <!--            data: chartData,-->
+    <!--            options: {-->
+    <!--                responsive: true,-->
+    <!--                plugins: {-->
+    <!--                    legend: {-->
+    <!--                        position: 'bottom',-->
+    <!--                    }-->
+    <!--                }-->
+    <!--            }-->
+    <!--        });-->
+    <!--    }-->
 
-<!--    // Gọi hàm render khi trang tải-->
-<!--    renderTopDishesChart();-->
+    <!--    // Gọi hàm render khi trang tải-->
+    <!--    renderTopDishesChart();-->
 
-<!--</script>-->
+    <!--</script>-->
 </body>
+
 </html>
